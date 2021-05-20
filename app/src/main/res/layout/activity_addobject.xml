@@ -4,28 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InventoryActivity">
+    tools:context=".AddObjectActivity">
 
     <Button
         android:id="@+id/button"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="<"
         android:textColor="@color/black"
         app:backgroundTint="#00FFFFFF"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="2dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:text="R"
+        android:onClick="goToPage2"/>
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajouter"
+        android:onClick="goToPage2"
         app:backgroundTint="@color/teal_200"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="300dp"
         tools:layout_editor_absoluteY="676dp"
-        tools:ignore="MissingConstraints" />
+        tools:text="Ajouter" />
 
     <TextView
         android:id="@+id/textView3"

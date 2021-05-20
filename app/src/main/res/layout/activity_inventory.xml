@@ -39,9 +39,10 @@
         android:id="@+id/button3"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="+"
         app:backgroundTint="@color/teal_200"
         tools:layout_editor_absoluteX="355dp"
         tools:layout_editor_absoluteY="675dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:text="+"
+        android:onClick="goToPage3"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
