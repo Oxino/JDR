@@ -19,7 +19,7 @@ public class InventoryActivity extends AppCompatActivity {
         startActivity(k);
     }
     public void goToPage3(View view) {
-        Intent k = new Intent(InventoryActivity.this, AddObjectActivity.class);
-        startActivity(k);
+        Intent l = new Intent(InventoryActivity.this, AddObjectActivity.class);
+        startActivity(l);
     }
 }

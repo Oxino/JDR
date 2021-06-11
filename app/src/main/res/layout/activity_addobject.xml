@@ -10,13 +10,16 @@
         android:id="@+id/button"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:onClick="goToPage2"
         android:textColor="@color/black"
         app:backgroundTint="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="2dp"
-        tools:ignore="MissingConstraints"
-        tools:text="R"
-        android:onClick="goToPage2"/>
+        app:layout_constraintVertical_bias="0.039"
+        tools:text="R" />
 
     <Button
         android:id="@+id/button2"
@@ -24,17 +27,29 @@
         android:layout_height="wrap_content"
         android:onClick="goToPage2"
         app:backgroundTint="@color/teal_200"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="300dp"
-        tools:layout_editor_absoluteY="676dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.922"
         tools:text="Ajouter" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajouter Objet"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="356dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_marginStart="164dp"
+        android:layout_marginLeft="164dp"
+        android:layout_marginTop="356dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginRight="165dp"
+        android:layout_marginBottom="356dp"
+        tools:text="Ajouter Objet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
