@@ -14,22 +14,22 @@ public class Item {
     @NonNull
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    protected int id;
 
     @NonNull
     @ColumnInfo(name = "characterId")
-    private int characterId;
+    protected int characterId;
 
     @NonNull
     @ColumnInfo(name = "name")
-    private final String name;
+    protected final String name;
 
     @NonNull
     @ColumnInfo(name = "size")
-    private int size;
+    protected int size;
 
     @ColumnInfo(name = "description")
-    private String description;
+    protected String description;
 
     public Item(@NonNull String name, String description, @NonNull int size, @NonNull int characterId){
         this.name = name;

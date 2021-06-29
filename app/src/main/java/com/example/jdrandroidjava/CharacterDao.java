@@ -24,5 +24,5 @@ public interface CharacterDao {
     LiveData<List<Character>> getCharacters();
 
     @Query("UPDATE character_table SET name = :name , storage = :storage WHERE id = :id")
-    void updateCharacters(String name, int storage, String description, int id);
+    void updateCharacters(String name, int storage, int id);
 }
