@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 import java.util.List;
 
@@ -25,4 +26,8 @@ public interface CharacterDao {
 
     @Query("UPDATE character_table SET name = :name , storage = :storage WHERE id = :id")
     void updateCharacters(String name, int storage, int id);
+
+    @Transaction
+    @Query("SELECT * FROM character_table")
+    LiveData<List<CharacterWithItems>> getCharacterWithItems();
 }

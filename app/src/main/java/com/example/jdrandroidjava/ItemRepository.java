@@ -11,7 +11,7 @@ class ItemRepository {
     private ItemDao mItemDao;
 
     ItemRepository(Application application) {
-        JdrRoomDatabase db = JdrRoomDatabase.getInstance(application);
+        JdrRoomDatabase db = JdrRoomDatabase.getDatabase(application);
         mItemDao = db.itemDao();
     }
 

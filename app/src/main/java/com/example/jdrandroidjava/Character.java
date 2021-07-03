@@ -35,4 +35,8 @@ public class Character {
     public int getStorage(){
         return this.storage;
     }
+
+    public String getName() { return this.name;}
+
+    public int getId() { return this.id;}
 }

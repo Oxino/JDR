@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Entity(tableName="item_table",
-        foreignKeys = @ForeignKey(entity = Character.class, parentColumns = "id", childColumns = "characterId")
-)
+        foreignKeys = @ForeignKey(entity = Character.class, parentColumns = "id", childColumns = "fk_character_id"), indices = @Index("fk_character_id"))
 public class Item {
 
     @NonNull
@@ -17,7 +19,7 @@ public class Item {
     protected int id;
 
     @NonNull
-    @ColumnInfo(name = "characterId")
+    @ColumnInfo(name = "fk_character_id")
     protected int characterId;
 
     @NonNull
