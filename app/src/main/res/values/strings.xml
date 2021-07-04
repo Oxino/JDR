@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">JDR Android Java</string>
+    <string name="number_items">Nombre d\'objets</string>
+    <string name="size_items">Encombrement</string>
 </resources>
