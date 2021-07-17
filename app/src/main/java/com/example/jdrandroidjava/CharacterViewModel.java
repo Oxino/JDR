@@ -1,6 +1,8 @@
 package com.example.jdrandroidjava;
 
 import android.app.Application;
+
+import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
@@ -10,9 +12,10 @@ public class CharacterViewModel extends AndroidViewModel {
 
     private CharacterRepository mRepository;
 
-    private final LiveData<List<Character>> mAllCharacters;
+    private LiveData<List<Character>> mAllCharacters;
 
-    public CharacterViewModel(Application application) {
+
+    public CharacterViewModel(@NonNull Application application) {
         super(application);
         mRepository = new CharacterRepository(application);
         mAllCharacters = mRepository.getAllCharacters();

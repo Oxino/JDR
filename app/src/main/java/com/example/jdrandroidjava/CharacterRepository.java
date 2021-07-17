@@ -13,7 +13,7 @@ class CharacterRepository {
     private LiveData<List<Character>> mAllCharacters;
 
     CharacterRepository(Application application) {
-        JdrRoomDatabase db = JdrRoomDatabase.getInstance(application);
+        JdrRoomDatabase db = JdrRoomDatabase.getDatabase(application);
         mCharacterDao = db.characterDao();
         mAllCharacters = mCharacterDao.getCharacters();
     }
@@ -21,6 +21,7 @@ class CharacterRepository {
     LiveData<List<Character>> getAllCharacters() {
         return mAllCharacters;
     }
+
 
     void insert(Character character) {
         JdrRoomDatabase.databaseWriteExecutor.execute(() -> {

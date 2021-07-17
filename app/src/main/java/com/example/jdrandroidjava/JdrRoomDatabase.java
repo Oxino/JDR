@@ -22,7 +22,7 @@ public abstract class JdrRoomDatabase extends RoomDatabase {
             Executors.newFixedThreadPool(1);
 
     // --- INSTANCE ---
-    public static JdrRoomDatabase getInstance(final Context context) {
+    public static JdrRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (JdrRoomDatabase.class) {
                 if (INSTANCE == null) {

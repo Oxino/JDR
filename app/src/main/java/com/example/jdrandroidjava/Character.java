@@ -13,15 +13,15 @@ public class Character {
     @NonNull
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    protected int id;
 
     @NonNull
     @ColumnInfo(name = "name")
-    private final String name;
+    protected final String name;
 
     @NonNull
     @ColumnInfo(name = "storage")
-    private int storage = 100;
+    protected int storage = 100;
 
     public Character(@NonNull String name){
         this.name = name;
@@ -35,4 +35,8 @@ public class Character {
     public int getStorage(){
         return this.storage;
     }
+
+    public String getName() { return this.name;}
+
+    public int getId() { return this.id;}
 }

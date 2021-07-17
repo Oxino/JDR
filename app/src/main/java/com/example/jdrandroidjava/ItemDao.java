@@ -20,7 +20,7 @@ public interface ItemDao {
     @Query("DELETE FROM item_table WHERE id = :id")
     void deleteItem(int id);
 
-    @Query("SELECT * FROM item_table WHERE characterId = :characterId ORDER BY id ASC")
+    @Query("SELECT * FROM item_table WHERE fk_character_id  = :characterId ORDER BY id ASC")
     LiveData<List<Item>> getItems(int characterId);
 
     @Query("UPDATE item_table SET name = :name , size = :size, description = :description WHERE id = :id")
