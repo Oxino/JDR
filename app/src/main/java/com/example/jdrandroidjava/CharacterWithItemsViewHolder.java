@@ -43,11 +43,11 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
         whiteColor = ContextCompat.getColor(itemView.getContext(), R.color.white);
     }
 
-    private void setLayoutVisibility(int isBaseLayoutVisible, int isOnClickLayoutVisible){
-        baseLayoutView.setVisibility(isBaseLayoutVisible);
-        onClickLayoutView.setVisibility(isOnClickLayoutVisible);
+    private void setLayoutVisibility(int baseLayoutVisibility, int onClickLayoutVisibility){
+        baseLayoutView.setVisibility(baseLayoutVisibility);
+        onClickLayoutView.setVisibility(onClickLayoutVisibility);
 
-        if(isBaseLayoutVisible == View.VISIBLE){
+        if(baseLayoutVisibility == View.VISIBLE){
             characterCardView.setCardBackgroundColor(whiteColor);
         }else{
             characterCardView.setCardBackgroundColor(importantColor);
@@ -58,9 +58,7 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
         characterCardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                characterCardView.setCardBackgroundColor(ContextCompat.getColor(v.getContext(), R.color.important));
-                baseLayoutView.setVisibility(View.INVISIBLE);
-                onClickLayoutView.setVisibility(View.VISIBLE);
+                setLayoutVisibility(View.INVISIBLE, View.VISIBLE);
                 return true;
             }
         });
@@ -80,8 +78,9 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems.character, CharacterAction.UPDATE);
+                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems, CharacterAction.UPDATE);
                 bottomSheetCharacterFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
+                setLayoutVisibility(View.VISIBLE, View.INVISIBLE);
             }
         });
 
@@ -89,19 +88,20 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems.character, CharacterAction.DELETE);
+                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems, CharacterAction.DELETE);
                 bottomSheetCharacterFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
+                setLayoutVisibility(View.VISIBLE, View.INVISIBLE);
             }
         });
 
 
     }
 
-    public void bind(CharacterWithItems characterWithItems, int isBaseLayoutVisible, int isOnClickLayoutVisible) {
+    public void bind(CharacterWithItems characterWithItems, int baseLayoutVisibility, int onClickLayoutVisibility) {
         characterNameView.setText(characterWithItems.character.getName());
         characterNumberItemsView.setText(getNumberItems(characterWithItems.items));
         characterSizeItemsView.setText(characterWithItems.getActualStorageToString());
-        setLayoutVisibility(isBaseLayoutVisible, isOnClickLayoutVisible);
+        setLayoutVisibility(baseLayoutVisibility, onClickLayoutVisibility);
 
         setListener(characterWithItems);
     }
