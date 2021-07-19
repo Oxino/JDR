@@ -13,12 +13,15 @@
     <string name="cancel">Annuler</string>
     <string name="question">?</string>
     <string name="confirm_common">Le personnage</string>
+    <string name="confirm_common_item">L\'objet</string>
     <string name="confirm_add">est bien ajouté !</string>
     <string name="confirm_update">est bien modifié !</string>
     <string name="confirm_delete">est bien supprimé !</string>
     <string name="input_error_character_name">Le nom ne peut pas être vide</string>
+    <string name="input_error_character_hasSame_name">Un personnage porte déjà ce nom</string>
     <string name="input_error_character_size">Le nombre ne peut pas être vide ou égale à 0</string>
     <string name="input_error_character_size_too_low">Le personnage contient trop d\'objet</string>
     <string name="item_nodata">Le personnage contient plus d\objet que cette taille</string>
+    <string name="delete_item">Voulez vous supprimer</string>
 
 </resources>

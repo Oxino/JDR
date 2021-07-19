@@ -32,6 +32,7 @@ public class CharacterViewModel extends AndroidViewModel {
         mRepository.update(character);
     }
 
+
     public void delete(int id){
         mRepository.delete(id);
     }

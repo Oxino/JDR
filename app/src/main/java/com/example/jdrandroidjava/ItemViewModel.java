@@ -20,5 +20,10 @@ public class ItemViewModel extends AndroidViewModel {
         return getmAllItems();
     }
 
+    public void delete(int id){
+        mRepository.delete(id);
+    }
+
+
 }
 

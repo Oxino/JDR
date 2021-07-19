@@ -3,11 +3,13 @@ package com.example.jdrandroidjava;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 class ItemViewHolder extends RecyclerView.ViewHolder{
@@ -15,10 +17,11 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
     private final TextView name;
     private final TextView size;
     private final TextView description;
-    private final RelativeLayout expandedView;
+    private final LinearLayout expandedView;
     private final RelativeLayout layout;
     private final LinearLayout element;
     private final ImageView arrow;
+    private final Button deleteBtn;
 
     private boolean isExpanded = false;
 
@@ -31,6 +34,7 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
         element = itemView.findViewById(R.id.element);
         layout = itemView.findViewById(R.id.layout);
         arrow = itemView.findViewById(R.id.arrow);
+        deleteBtn = itemView.findViewById(R.id.delete_item);
     }
 
 
@@ -43,6 +47,15 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
                 expandedView.setVisibility(visibleValue);
                 float rotateXArrow = isExpanded ? 0 : 180;
                 arrow.setRotationX(rotateXArrow);
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                BottomSheetItemFragment bottomSheetItemFragment = BottomSheetItemFragment.getInstance(item, ItemActionEnum.DELETE);
+                bottomSheetItemFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
             }
         });
     }

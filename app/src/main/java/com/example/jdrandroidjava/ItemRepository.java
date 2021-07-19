@@ -19,4 +19,10 @@ class ItemRepository {
         return mItemDao.getItems(characterId);
     }
 
+    void delete(int id) {
+        JdrRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mItemDao.delete(id);
+        });
+    }
+
 }

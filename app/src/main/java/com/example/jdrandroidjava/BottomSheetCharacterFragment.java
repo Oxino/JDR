@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
 
-    public static   final String TAG="ModalBottomSheetFragmentMenu";
+    public static   final String TAG="ModelBottomSheetCharacterFragment";
 
     private CharacterViewModel mCharacterViewModel;
 
@@ -186,7 +186,12 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
         int inputSizeValue = 0;
         boolean isError = false;
 
-        if(!name.isEmpty() && size != "0"){
+        if(name.isEmpty()){
+            inputName.setError(getResources().getString(R.string.input_error_character_name));
+            isError = true;
+        }
+
+        if(size != "0"){
             inputSizeValue = Integer.parseInt(size);
             if(inputSizeValue == 0){
                 inputSize.setError(getResources().getString(R.string.input_error_character_size));
@@ -194,11 +199,6 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
             }
         }else{
             inputSize.setError(getResources().getString(R.string.input_error_character_size));
-            isError = true;
-        }
-
-        if(name.isEmpty()){
-            inputName.setError(getResources().getString(R.string.input_error_character_name));
             isError = true;
         }
 
