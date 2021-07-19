@@ -1,6 +1,5 @@
 package com.example.jdrandroidjava;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,16 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.jdrandroidjava.CharacterViewModel;
-import com.example.jdrandroidjava.Character;
-import com.example.jdrandroidjava.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.ArrayList;
 
 public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
 
@@ -46,7 +40,7 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
     private RelativeLayout updateAddButtons;
 
 
-    public static BottomSheetCharacterFragment getInstance(Character character, CharacterAction action){
+    public static BottomSheetCharacterFragment getInstance(Character character, CharacterActionEnum action){
         BottomSheetCharacterFragment bottomSheetCharacterFragment = new BottomSheetCharacterFragment();
         Bundle args = new Bundle();
         args.putSerializable("character", character);
@@ -106,18 +100,18 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
 
         Bundle bundle = this.getArguments();
         Character receivedCharacter;
-        CharacterAction receivedAction;
+        CharacterActionEnum receivedAction;
 
         if (bundle != null) {
             try {
                 receivedCharacter = (Character) bundle.getSerializable("character");
-                receivedAction = (CharacterAction) bundle.getSerializable("action");
+                receivedAction = (CharacterActionEnum) bundle.getSerializable("action");
 
                 if(receivedCharacter != null){
-                    if(receivedAction == CharacterAction.UPDATE){
+                    if(receivedAction == CharacterActionEnum.UPDATE){
                         setUpdateFragment(receivedCharacter);
                     }
-                    if(receivedAction == CharacterAction.DELETE){
+                    if(receivedAction == CharacterActionEnum.DELETE){
                         setDeleteFragment(receivedCharacter);
                     }
                 }

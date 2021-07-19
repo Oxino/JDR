@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,8 +69,8 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), InventoryActivity.class);
                 Bundle b = new Bundle();
-                b.putInt("characterId", characterWithItems.character.getId()); //Your id
-                intent.putExtras(b); //Put your id to your next Intent
+                b.putInt("characterId", characterWithItems.character.getId());
+                intent.putExtras(b);
                 v.getContext().startActivity(intent);
             }
         });
@@ -80,7 +79,7 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems.character, CharacterAction.UPDATE);
+                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems.character, CharacterActionEnum.UPDATE);
                 bottomSheetCharacterFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
             }
         });
@@ -89,7 +88,7 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems.character, CharacterAction.DELETE);
+                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems.character, CharacterActionEnum.DELETE);
                 bottomSheetCharacterFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
             }
         });

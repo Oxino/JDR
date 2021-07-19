@@ -7,39 +7,6 @@
     android:background="@color/background"
     tools:context=".AddObjectActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="409dp"
-        android:layout_height="70dp"
-        android:background="#DDDBDB"
-        android:clickable="false"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-
-        android:id="@+id/button"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="#00FFFFFF"
-
-        android:onClick="goToPage2"
-        android:src="@drawable/ic_baseline_arrow_back_ios_24"
-        android:textColor="@color/black"
-        app:backgroundTint="#DDDBDB"
-        app:borderWidth="0dp"
-        app:fabSize="auto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.040"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.010" />
 
     <Button
         android:id="@+id/button2"
@@ -55,34 +22,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.922"
         tools:text="Ajouter" />
-
-    <AutoCompleteTextView
-        android:id="@+id/charId"
-        android:layout_width="242dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="10dp"
-        android:text="Name"
-        android:textColor="@color/purple_500"
-        android:textColorLink="@color/purple_700"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.008" />
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="10/100"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toEndOf="@+id/charId"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.008" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/itemName"

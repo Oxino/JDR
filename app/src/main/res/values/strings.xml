@@ -19,5 +19,7 @@
     <string name="input_error_character_name">Le nom ne peut pas être vide</string>
     <string name="input_error_character_size">Le nombre ne peut pas être vide ou égale à 0</string>
     <string name="item_nodata">Ce personnage n\'a aucun objet</string>
+    <string name="item_too_big">L\'objet prend trop de place</string>
+    <string name="item_add">L\'objet est ajouté !</string>
 
 </resources>

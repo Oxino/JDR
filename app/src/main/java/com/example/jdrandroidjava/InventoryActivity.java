@@ -14,10 +14,12 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 public class InventoryActivity extends AppCompatActivity {
 
     private CharacterWithItems characterWithItems;
+    private ItemActionEnum itemAction;
 
     private CharacterWithItemsViewModel mCharacterWithItemsViewModel;
 
@@ -29,6 +31,10 @@ public class InventoryActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         if(b != null){
             int id = b.getInt("characterId");
+            itemAction = (ItemActionEnum) b.getSerializable("event");
+            if(itemAction != null){
+                showSnackbar();
+            }
             mCharacterWithItemsViewModel = new ViewModelProvider(this).get(CharacterWithItemsViewModel.class);
             mCharacterWithItemsViewModel.getCharacterWithItems(id).observe(this, characterWithItemsValue -> {
                 characterWithItems = characterWithItemsValue;
@@ -37,6 +43,14 @@ public class InventoryActivity extends AppCompatActivity {
         }else{
             Intent intent = new Intent(InventoryActivity.this, HomeActivity.class);
             startActivity(intent);
+        }
+    }
+
+    private void showSnackbar(){
+        if(itemAction == ItemActionEnum.ADD){
+            String snackbarTest = getResources().getString(R.string.item_add);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
+            snackbar.show();
         }
     }
 
@@ -64,7 +78,11 @@ public class InventoryActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(view.getContext(), AddObjectActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("characterId", characterWithItems.character.getId()); //Your id
+                intent.putExtras(b); //Put your id to your next Intent
+                view.getContext().startActivity(intent);
             }
         });
     }
