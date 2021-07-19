@@ -18,14 +18,18 @@ public interface CharacterDao {
     @Query("DELETE FROM character_table")
     void deleteAll();
 
-    @Query("DELETE FROM character_table WHERE id = :id")
-    void deleteAll(int id);
-
     @Query("SELECT * FROM character_table ORDER BY id ASC")
     LiveData<List<Character>> getCharacters();
 
+    @Transaction
+    @Query("SELECT * FROM character_table WHERE id = :id")
+    LiveData<CharacterWithItems> getCharacter(int id);
+
     @Query("UPDATE character_table SET name = :name , storage = :storage WHERE id = :id")
-    void updateCharacters(String name, int storage, int id);
+    void updateCharacter(String name, int storage, int id);
+
+    @Query("DELETE FROM character_table WHERE id = :id")
+    void delete(int id);
 
     @Transaction
     @Query("SELECT * FROM character_table")

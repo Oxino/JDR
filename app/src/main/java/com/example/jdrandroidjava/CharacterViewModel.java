@@ -20,8 +20,20 @@ public class CharacterViewModel extends AndroidViewModel {
         mAllCharacters = mRepository.getAllCharacters();
     }
 
-    LiveData<List<Character>> getmAllCharacters() {
+    public LiveData<List<Character>> getmAllCharacters() {
         return mAllCharacters;
+    }
+
+    public void insert(Character character){
+        mRepository.insert(character);
+    }
+
+    public void update(Character character){
+        mRepository.update(character);
+    }
+
+    public void delete(int id){
+        mRepository.delete(id);
     }
 
 

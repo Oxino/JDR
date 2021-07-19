@@ -29,5 +29,17 @@ class CharacterRepository {
         });
     }
 
+    void update(Character character) {
+        JdrRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mCharacterDao.updateCharacter(character.getName(), character.getStorage(), character.getId());
+        });
+    }
+
+    void delete(int id) {
+        JdrRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mCharacterDao.delete(id);
+        });
+    }
+
 }
 

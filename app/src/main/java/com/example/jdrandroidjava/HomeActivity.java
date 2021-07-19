@@ -1,5 +1,6 @@
 package com.example.jdrandroidjava;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -7,13 +8,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private CharacterWithItemsViewModel mCharacterViewModel;
+    private CharacterWithItemsViewModel mCharacterWithItemsViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +32,11 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setClickable(true);
         recyclerView.setLongClickable(true);
-        mCharacterViewModel = new ViewModelProvider(this).get(CharacterWithItemsViewModel.class);
-        mCharacterViewModel.getmAllCharactersWithItems().observe(this, charactersWithItems -> {
+        mCharacterWithItemsViewModel = new ViewModelProvider(this).get(CharacterWithItemsViewModel.class);
+        mCharacterWithItemsViewModel.getmAllCharactersWithItems().observe(this, charactersWithItems -> {
             adapter.submitList(charactersWithItems);
         });
+
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -42,6 +48,39 @@ public class HomeActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
+
+        /*recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+                if(e.getAction() == MotionEvent.A){
+                    CharacterWithItemsAdapter adapter = (CharacterWithItemsAdapter) recyclerView.getAdapter();
+                    adapter.updateLayoutVisibility(View.VISIBLE, View.INVISIBLE);
+                    adapter.notifyDataSetChanged();
+                }
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+            }
+        });*/
+
+        FloatingActionButton fab = findViewById(R.id.add);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance();
+                bottomSheetCharacterFragment.showNow(getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
+            }
+        });
+
 
     }
 

@@ -53,20 +53,26 @@ public abstract class JdrRoomDatabase extends RoomDatabase {
                 CharacterDao characterDao = INSTANCE.characterDao();
                 characterDao.deleteAll();
 
-                Character character = new Character("Lucas");
+                Character character = new Character("Lucas", 100);
                 characterDao.insert(character);
-                character = new Character("Lucas2");
+                character = new Character("Lucas2", 150);
                 characterDao.insert(character);
-                character = new Character("Lucas3");
+                character = new Character("Lucas3", 350);
                 characterDao.insert(character);
-                character = new Character("Lucas4");
+                character = new Character("Lucas4", 100);
                 characterDao.insert(character);
-                character = new Character("Lucas5");
+                character = new Character("Lucas5", 100);
                 characterDao.insert(character);
 
                 ItemDao itemDao = INSTANCE.itemDao();
 
-                Item item = new Item("obet", "10", 10, 1);
+                Item item = new Item("obefeft", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 10, 1);
+                itemDao.insert(item);
+                item = new Item("dd", "1fezfzeffez fzefzef", 10, 1);
+                itemDao.insert(item);
+                item = new Item("obessfeft", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 15, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
                 itemDao.insert(item);
             });
         }

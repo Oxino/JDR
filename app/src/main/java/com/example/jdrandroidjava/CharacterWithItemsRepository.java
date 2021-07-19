@@ -22,5 +22,9 @@ class CharacterWithItemsRepository {
         return mAllCharactersWithItems;
     }
 
+    LiveData<CharacterWithItems> getCharacterWithItems(int id){
+        return mCharacterDao.getCharacter(id);
+    }
+
 }
 

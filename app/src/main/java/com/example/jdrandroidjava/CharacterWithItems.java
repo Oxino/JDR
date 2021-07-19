@@ -16,5 +16,13 @@ public class CharacterWithItems {
     )
     public List<Item> items;
 
+    public String getActualStorageToString(){
+        int size = 0;
+        for (Item item: items) {
+            size += item.size;
+        }
+        return size + "/" + character.storage;
+    }
+
 
 }
