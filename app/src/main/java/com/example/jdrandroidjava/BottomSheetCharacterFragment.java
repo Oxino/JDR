@@ -144,6 +144,7 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
                 int inputSizeValue = 0;
 
                 if(!hasInputError(inputNameValue, inputSizeString)){
+                    inputSizeValue = Integer.parseInt(inputSizeString);
                     Character newCharacter = new Character(inputNameValue, inputSizeValue, character.getId());
                     mCharacterViewModel.update(newCharacter);
                     String snackbarTest = getResources().getString(R.string.confirm_common) + " " + inputNameValue + " "+ getResources().getString(R.string.confirm_update);
