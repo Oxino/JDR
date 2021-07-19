@@ -14,6 +14,7 @@ public class CharacterWithItemsViewModel extends AndroidViewModel {
 
     private LiveData<List<CharacterWithItems>> mAllCharactersWithItems;
 
+
     public CharacterWithItemsViewModel(@NonNull Application application) {
         super(application);
         mRepository = new CharacterWithItemsRepository(application);
@@ -22,6 +23,10 @@ public class CharacterWithItemsViewModel extends AndroidViewModel {
 
     LiveData<List<CharacterWithItems>> getmAllCharactersWithItems() {
         return mAllCharactersWithItems;
+    }
+
+    LiveData<CharacterWithItems> getCharacterWithItems(int id){
+        return mRepository.getCharacterWithItems(id);
     }
 
 }

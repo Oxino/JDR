@@ -2,13 +2,14 @@ package com.example.jdrandroidjava;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.annotation.NonNull;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 
 @Entity(tableName="character_table")
-public class Character {
+public class Character implements Serializable {
 
     @NonNull
     @ColumnInfo(name = "id")
@@ -21,15 +22,18 @@ public class Character {
 
     @NonNull
     @ColumnInfo(name = "storage")
-    protected int storage = 100;
+    protected int storage;
 
-    public Character(@NonNull String name){
+    public Character(@NonNull String name, @NonNull int storage){
         this.name = name;
+        this.storage = storage;
     }
 
-    public Character(@NonNull String name, int clutter){
+    @Ignore
+    public Character(@NonNull String name, @NonNull int storage, @NonNull int id){
         this.name = name;
-        this.storage = clutter;
+        this.storage = storage;
+        this.id = id;
     }
 
     public int getStorage(){

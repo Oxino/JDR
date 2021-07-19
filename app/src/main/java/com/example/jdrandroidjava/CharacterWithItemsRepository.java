@@ -1,13 +1,13 @@
 package com.example.jdrandroidjava;
 
+
 import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
 
-
-public class CharacterWithItemsRepository {
+class CharacterWithItemsRepository {
 
     private CharacterDao mCharacterDao;
     private LiveData<List<CharacterWithItems>> mAllCharactersWithItems;
@@ -21,4 +21,10 @@ public class CharacterWithItemsRepository {
     LiveData<List<CharacterWithItems>> getAllCharactersWithItems() {
         return mAllCharactersWithItems;
     }
+
+    LiveData<CharacterWithItems> getCharacterWithItems(int id){
+        return mCharacterDao.getCharacter(id);
+    }
+
 }
+

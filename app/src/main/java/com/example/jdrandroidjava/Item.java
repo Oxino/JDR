@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName="item_table",
-        foreignKeys = @ForeignKey(entity = Character.class, parentColumns = "id", childColumns = "fk_character_id"), indices = @Index("fk_character_id"))
+        foreignKeys = @ForeignKey(entity = Character.class, parentColumns = "id", childColumns = "fk_character_id", onDelete = CASCADE), indices = @Index("fk_character_id"))
 public class Item {
 
     @NonNull
@@ -40,14 +40,15 @@ public class Item {
         this.characterId = characterId;
     }
 
+    public String getName(){
+        return this.name;
+    }
 
-    public int getId(){return this.id;}
+    public int getSize(){
+        return this.size;
+    }
 
-    public int getCharacterId(){return this.characterId;}
-
-    public String getName(){return this.name;}
-
-    public int getSize(){return this.size;}
-
-    public String getDescription(){return this.description;}
+    public String getDescription(){
+        return this.description;
+    }
 }

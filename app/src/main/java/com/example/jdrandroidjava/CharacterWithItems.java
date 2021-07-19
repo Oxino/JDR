@@ -5,9 +5,8 @@ import androidx.room.Relation;
 
 import java.util.List;
 
-
-
 public class CharacterWithItems {
+
     @Embedded
     public Character character;
     @Relation(
@@ -16,4 +15,14 @@ public class CharacterWithItems {
             entity = Item.class
     )
     public List<Item> items;
+
+    public String getActualStorageToString(){
+        int size = 0;
+        for (Item item: items) {
+            size += item.size;
+        }
+        return size + "/" + character.storage;
+    }
+
+
 }
