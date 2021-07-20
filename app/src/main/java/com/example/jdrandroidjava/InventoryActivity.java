@@ -57,13 +57,13 @@ public class InventoryActivity extends AppCompatActivity {
 
     private void showSnackbar(){
         if(itemAction == ItemActionEnum.ADD){
-            String snackbarTest = getResources().getString(R.string.item_add);
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
+            String snackbarText = getResources().getString(R.string.item_add);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), snackbarText, Snackbar.LENGTH_LONG);
             snackbar.show();
         }
         if(itemAction == ItemActionEnum.UPDATE){
-            String snackbarTest = getResources().getString(R.string.item_updated);
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
+            String snackbarText = getResources().getString(R.string.item_updated);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), snackbarText, Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }

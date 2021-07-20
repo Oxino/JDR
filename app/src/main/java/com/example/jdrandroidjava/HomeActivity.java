@@ -49,29 +49,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
-        /*recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                if(e.getAction() == MotionEvent.A){
-                    CharacterWithItemsAdapter adapter = (CharacterWithItemsAdapter) recyclerView.getAdapter();
-                    adapter.updateLayoutVisibility(View.VISIBLE, View.INVISIBLE);
-                    adapter.notifyDataSetChanged();
-                }
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-            }
-        });*/
-
         FloatingActionButton fab = findViewById(R.id.add);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +57,6 @@ public class HomeActivity extends AppCompatActivity {
                 bottomSheetCharacterFragment.showNow(getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
             }
         });
-
 
     }
 }

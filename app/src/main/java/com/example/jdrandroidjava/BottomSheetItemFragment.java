@@ -69,8 +69,8 @@ public class BottomSheetItemFragment extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 mItemViewModel.delete(item.getId());
-                String snackbarTest = getResources().getString(R.string.confirm_common_item) + " " + item.getName() + " "+ getResources().getString(R.string.confirm_delete);
-                Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
+                String snackbarText = getResources().getString(R.string.confirm_common_item) + " " + item.getName() + " "+ getResources().getString(R.string.confirm_delete);
+                Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarText, Snackbar.LENGTH_LONG);
                 snackbar.show();
                 dismiss();
             }

@@ -141,8 +141,8 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
                         newCharacter = new Character(inputNameValue, inputSizeValue);
                     }
                     mCharacterViewModel.insert(newCharacter);
-                    String snackbarTest = getResources().getString(R.string.confirm_common) + " " + inputNameValue + " "+ getResources().getString(R.string.confirm_add);
-                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
+                    String snackbarText = getResources().getString(R.string.confirm_common) + " " + inputNameValue + " "+ getResources().getString(R.string.confirm_add);
+                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarText, Snackbar.LENGTH_LONG);
                     snackbar.show();
                     dismiss();
                 }
@@ -232,8 +232,8 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
                     inputSizeValue = Integer.parseInt(inputSizeString);
                     Character newCharacter = new Character(inputNameValue, inputSizeValue, characterWithItems.character.getId());
                     mCharacterViewModel.update(newCharacter);
-                    String snackbarTest = getResources().getString(R.string.confirm_common) + " " + inputNameValue + " "+ getResources().getString(R.string.confirm_update);
-                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
+                    String snackbarText = getResources().getString(R.string.confirm_common) + " " + inputNameValue + " "+ getResources().getString(R.string.confirm_update);
+                    Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarText, Snackbar.LENGTH_LONG);
                     snackbar.show();
                     dismiss();
                 }
@@ -252,8 +252,8 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 mCharacterViewModel.delete(characterWithItems.character.getId());
-                String snackbarTest = getResources().getString(R.string.confirm_common) + " " + characterWithItems.character.getName() + " "+ getResources().getString(R.string.confirm_delete);
-                Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
+                String snackbarText = getResources().getString(R.string.confirm_common) + " " + characterWithItems.character.getName() + " "+ getResources().getString(R.string.confirm_delete);
+                Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarText, Snackbar.LENGTH_LONG);
                 snackbar.show();
                 dismiss();
             }
