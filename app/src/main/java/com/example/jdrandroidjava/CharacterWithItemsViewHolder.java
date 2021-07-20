@@ -30,6 +30,7 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
     private final int whiteColor;
     private final ImageView edit;
     private final ImageView delete;
+    private boolean isLongClicked = false;
 
     private CharacterWithItemsViewHolder(View itemView) {
         super(itemView);
@@ -61,7 +62,13 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
         characterCardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                setLayoutVisibility(View.INVISIBLE, View.VISIBLE);
+                isLongClicked = !isLongClicked;
+                if(isLongClicked){
+                    setLayoutVisibility(View.INVISIBLE, View.VISIBLE);
+                }else{
+                    setLayoutVisibility(View.VISIBLE, View.INVISIBLE);
+                }
+
                 return true;
             }
         });
