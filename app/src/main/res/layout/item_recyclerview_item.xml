@@ -88,6 +88,13 @@
                     android:backgroundTint="@color/interaction"
                     android:text="@string/delete"
                     android:layout_alignParentLeft="true"/>
+                <Button
+                    android:id="@+id/update_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/interaction"
+                    android:text="@string/update_item"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
         </LinearLayout>
 

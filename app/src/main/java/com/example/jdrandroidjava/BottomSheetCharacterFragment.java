@@ -46,7 +46,7 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
     private RelativeLayout updateAddButtons;
 
 
-    public static BottomSheetCharacterFragment getInstance(CharacterWithItems characterWithItems, CharacterAction action){
+    public static BottomSheetCharacterFragment getInstance(CharacterWithItems characterWithItems, CharacterActionEnum action){
         BottomSheetCharacterFragment bottomSheetCharacterFragment = new BottomSheetCharacterFragment();
         Bundle args = new Bundle();
         args.putSerializable("characterWithItems", characterWithItems);
@@ -106,18 +106,18 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
 
         Bundle bundle = this.getArguments();
         CharacterWithItems receivedCharacterWithItems;
-        CharacterAction receivedAction;
+        CharacterActionEnum receivedAction;
 
         if (bundle != null) {
             try {
                 receivedCharacterWithItems = (CharacterWithItems) bundle.getSerializable("characterWithItems");
-                receivedAction = (CharacterAction) bundle.getSerializable("action");
+                receivedAction = (CharacterActionEnum) bundle.getSerializable("action");
 
                 if(receivedCharacterWithItems != null){
-                    if(receivedAction == CharacterAction.UPDATE){
+                    if(receivedAction == CharacterActionEnum.UPDATE){
                         setUpdateFragment(receivedCharacterWithItems);
                     }
-                    if(receivedAction == CharacterAction.DELETE){
+                    if(receivedAction == CharacterActionEnum.DELETE){
                         setDeleteFragment(receivedCharacterWithItems);
                     }
                 }

@@ -77,7 +77,7 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems, CharacterAction.UPDATE);
+                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems, CharacterActionEnum.UPDATE);
                 bottomSheetCharacterFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
                 setLayoutVisibility(View.VISIBLE, View.INVISIBLE);
             }
@@ -87,7 +87,7 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems, CharacterAction.DELETE);
+                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems, CharacterActionEnum.DELETE);
                 bottomSheetCharacterFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
                 setLayoutVisibility(View.VISIBLE, View.INVISIBLE);
             }

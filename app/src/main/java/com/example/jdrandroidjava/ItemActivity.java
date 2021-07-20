@@ -43,7 +43,7 @@ public class ItemActivity extends AppCompatActivity {
             Intent intent = new Intent(ItemActivity.this, InventoryActivity.class);
             startActivity(intent);
         }
-            setContentView(R.layout.activity_addobject);
+            setContentView(R.layout.activity_item);
 
     }
 
@@ -106,13 +106,13 @@ public class ItemActivity extends AppCompatActivity {
         String itemSizeString = itemSize.getEditText().getText().toString();
 
         if(itemSizeString.isEmpty() || itemSizeString == "0"){
-            itemSize.setError(getResources().getString(R.string.item_size));
+            itemSize.setError(getResources().getString(R.string.item_size_required));
             isError = true;
         }else{
             if(itemSizeString != "0"){
                 itemSizeValue = Integer.parseInt(itemSizeString);
                 if(itemSizeValue == 0){
-                    itemSize.setError(getResources().getString(R.string.item_size));
+                    itemSize.setError(getResources().getString(R.string.item_size_required));
                     isError = true;
                 }
             }
@@ -163,13 +163,13 @@ public class ItemActivity extends AppCompatActivity {
         String itemSizeString = itemSize.getEditText().getText().toString();
 
         if(itemSizeString.isEmpty() || itemSizeString == "0"){
-            itemSize.setError(getResources().getString(R.string.item_size));
+            itemSize.setError(getResources().getString(R.string.item_size_required));
             isError = true;
         }else{
             if(itemSizeString != "0"){
                 itemSizeValue = Integer.parseInt(itemSizeString);
                 if(itemSizeValue == 0){
-                    itemSize.setError(getResources().getString(R.string.item_size));
+                    itemSize.setError(getResources().getString(R.string.item_size_required));
                     isError = true;
                 }
             }

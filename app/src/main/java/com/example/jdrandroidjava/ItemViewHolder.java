@@ -1,5 +1,7 @@
 package com.example.jdrandroidjava;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
     private final LinearLayout element;
     private final ImageView arrow;
     private final Button deleteBtn;
+    private final Button updateBtn;
 
     private boolean isExpanded = false;
 
@@ -35,6 +38,7 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
         layout = itemView.findViewById(R.id.layout);
         arrow = itemView.findViewById(R.id.arrow);
         deleteBtn = itemView.findViewById(R.id.delete_item);
+        updateBtn = itemView.findViewById(R.id.update_item);
     }
 
 
@@ -56,6 +60,23 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 BottomSheetItemFragment bottomSheetItemFragment = BottomSheetItemFragment.getInstance(item, ItemActionEnum.DELETE);
                 bottomSheetItemFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
+            }
+        });
+
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(view.getContext(), ItemActivity.class);
+                        Bundle b = new Bundle();
+                        b.putSerializable("item", item);
+                        b.putInt("characterId", item.characterId);
+                        intent.putExtras(b);
+                        view.getContext().startActivity(intent);
+                    }
+                });
             }
         });
     }
