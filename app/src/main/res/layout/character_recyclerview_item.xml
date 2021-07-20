@@ -55,6 +55,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <ImageView
+                    android:id="@+id/character_image"
+                    android:layout_width="113dp"
+                    android:layout_height="99dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_delete" />
+
                 <TextView
                     android:id="@+id/character_name"
                     android:layout_width="match_parent"

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -46,12 +48,27 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:id="@+id/update_add_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/character_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <Button
+                android:id="@+id/add_character_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/interaction"
+                android:text="@string/add_image"
+                android:visibility="visible" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nameInputLayout"

@@ -19,5 +19,6 @@
     <string name="input_error_character_name">Le nom ne peut pas être vide</string>
     <string name="input_error_character_size">Le nombre ne peut pas être vide ou égale à 0</string>
     <string name="item_nodata">Ce personnage n\'a aucun objet</string>
+    <string name="add_image">Importer une image</string>
 
 </resources>
