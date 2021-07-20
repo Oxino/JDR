@@ -1,7 +1,6 @@
 package com.example.jdrandroidjava;
 
 import java.util.Comparator;
-import java.util.List;
 
 class SortByAlphabet implements Comparator<Item>
 {

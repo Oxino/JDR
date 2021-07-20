@@ -18,7 +18,6 @@ public class BottomSheetItemFragment extends BottomSheetDialogFragment {
     public static final String TAG="ModalBottomSheetItemFragment";
 
     private Item item;
-    private ItemActionEnum action;
 
     private ItemViewModel mItemViewModel;
 
@@ -54,7 +53,7 @@ public class BottomSheetItemFragment extends BottomSheetDialogFragment {
         if (bundle != null) {
             try {
                 item = (Item) bundle.getSerializable("item");
-                action = (ItemActionEnum) bundle.getSerializable("action");
+                ItemActionEnum action = (ItemActionEnum) bundle.getSerializable("action");
             }catch (Exception e){
             }
         }

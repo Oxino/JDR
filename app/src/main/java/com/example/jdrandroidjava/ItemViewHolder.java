@@ -20,7 +20,6 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
     private final TextView size;
     private final TextView description;
     private final LinearLayout expandedView;
-    private final RelativeLayout layout;
     private final LinearLayout element;
     private final ImageView arrow;
     private final Button deleteBtn;
@@ -35,7 +34,7 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
         description = itemView.findViewById(R.id.description);
         expandedView = itemView.findViewById(R.id.expanded_view);
         element = itemView.findViewById(R.id.element);
-        layout = itemView.findViewById(R.id.layout);
+        RelativeLayout layout = itemView.findViewById(R.id.layout);
         arrow = itemView.findViewById(R.id.arrow);
         deleteBtn = itemView.findViewById(R.id.delete_item);
         updateBtn = itemView.findViewById(R.id.update_item);
@@ -65,18 +64,13 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
 
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                updateBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(view.getContext(), ItemActivity.class);
-                        Bundle b = new Bundle();
-                        b.putSerializable("item", item);
-                        b.putInt("characterId", item.characterId);
-                        intent.putExtras(b);
-                        view.getContext().startActivity(intent);
-                    }
-                });
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ItemActivity.class);
+                Bundle b = new Bundle();
+                b.putSerializable("item", item);
+                b.putInt("characterId", item.characterId);
+                intent.putExtras(b);
+                view.getContext().startActivity(intent);
             }
         });
     }

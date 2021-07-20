@@ -67,8 +67,7 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
     }
 
     public static BottomSheetCharacterFragment getInstance(){
-        BottomSheetCharacterFragment bottomSheetCharacterFragment = new BottomSheetCharacterFragment();
-        return bottomSheetCharacterFragment;
+        return new BottomSheetCharacterFragment();
     }
 
     @Nullable
@@ -101,12 +100,7 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
 
 
 
-        addImageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageChooser();
-            }
-        });
+        addImageBtn.setOnClickListener(v -> imageChooser());
 
 
 
