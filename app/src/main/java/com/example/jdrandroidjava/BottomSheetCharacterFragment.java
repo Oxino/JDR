@@ -186,24 +186,30 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
         int inputSizeValue = 0;
         boolean isError = false;
 
-        if(name.isEmpty()){
+        if(name.trim().isEmpty()){
             inputName.setError(getResources().getString(R.string.input_error_character_name));
             isError = true;
+        }else{
+            inputName.setError(null);
         }
 
-        if(size != "0"){
+        if(!size.trim().isEmpty() && size != "0"){
             inputSizeValue = Integer.parseInt(size);
             if(inputSizeValue == 0){
                 inputSize.setError(getResources().getString(R.string.input_error_character_size));
                 isError = true;
+            }else{
+                if(characterWithItems != null){
+                    if(inputSizeValue < characterWithItems.getActualStorage()){
+                        inputSize.setError(getResources().getString(R.string.input_error_character_size_too_low));
+                        isError = true;
+                    }else{
+                        inputSize.setError(null);
+                    }
+                }
             }
         }else{
             inputSize.setError(getResources().getString(R.string.input_error_character_size));
-            isError = true;
-        }
-
-        if(characterWithItems != null && inputSizeValue < characterWithItems.getActualStorage()){
-            inputSize.setError(getResources().getString(R.string.input_error_character_size_too_low));
             isError = true;
         }
 
