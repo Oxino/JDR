@@ -4,7 +4,7 @@
     <string name="size_items">Encombrement</string>
     <string name="add_character">Ajouter un personnage</string>
     <string name="update_character">Modifier un personnage</string>
-    <string name="delete_character">Voulez vous supprimer le personnage ?</string>
+    <string name="delete_character">Voulez vous supprimer</string>
     <string name="name_character">Nom</string>
     <string name="size_character">Nombre d\'emplacement</string>
     <string name="add">Ajouter</string>
