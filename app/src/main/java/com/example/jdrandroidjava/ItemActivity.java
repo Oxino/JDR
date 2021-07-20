@@ -21,6 +21,15 @@ public class ItemActivity extends AppCompatActivity {
     private ItemViewModel mItemViewModel;
     private Item updatedItem;
     private int characterId;
+    private boolean isError = false;
+    private int itemSizeValue = 0;
+
+    private TextInputLayout itemName;
+    private String itemNameValue;
+    private TextInputLayout itemDescription;
+    private String itemDescriptionValue;
+    private TextInputLayout itemSize;
+    private String itemSizeString;
 
 
     @Override
@@ -54,11 +63,11 @@ public class ItemActivity extends AppCompatActivity {
         actionBar.show();
 
         if (updatedItem != null){
-            Button sauvegarder = findViewById(R.id.item_validate_update);
-            sauvegarder.setVisibility(View.VISIBLE);
+            Button itemUpdate = findViewById(R.id.item_validate_update);
+            itemUpdate.setVisibility(View.VISIBLE);
 
-            Button ajouter = findViewById(R.id.item_add);
-            ajouter.setVisibility(View.GONE);
+            Button itemAdd = findViewById(R.id.item_add);
+            itemAdd.setVisibility(View.GONE);
 
             TextInputLayout itemText = findViewById(R.id.itemName);
             itemText.getEditText().setText(updatedItem.getName());
@@ -83,14 +92,13 @@ public class ItemActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void getItemValues(){
+        isError = false;
+        itemSizeValue = 0;
 
-    public void addItem(View view) {
-        boolean isError = false;
-        int itemSizeValue = 0;
+        itemName = findViewById(R.id.itemName);
 
-        TextInputLayout itemName = findViewById(R.id.itemName);
-
-        String itemNameValue = itemName.getEditText().getText().toString();
+        itemNameValue = itemName.getEditText().getText().toString();
 
         if(itemNameValue.trim().isEmpty()){
             itemName.setError(getResources().getString(R.string.item_name));
@@ -99,11 +107,11 @@ public class ItemActivity extends AppCompatActivity {
             itemName.setError(null);
         }
 
-        TextInputLayout itemDescription = findViewById(R.id.itemDescription);
-        String itemDescriptionValue = itemDescription.getEditText().getText().toString();
+        itemDescription = findViewById(R.id.itemDescription);
+        itemDescriptionValue = itemDescription.getEditText().getText().toString();
 
-        TextInputLayout itemSize = findViewById(R.id.itemSize);
-        String itemSizeString = itemSize.getEditText().getText().toString();
+        itemSize = findViewById(R.id.itemSize);
+        itemSizeString = itemSize.getEditText().getText().toString();
 
         if(itemSizeString.isEmpty() || itemSizeString == "0"){
             itemSize.setError(getResources().getString(R.string.item_size_required));
@@ -118,12 +126,17 @@ public class ItemActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    public void addItem(View view) {
+
+        getItemValues();
+
         if(!isError){
             if(!characterWithItems.canHaveThisItem(itemSizeValue)){
                 itemSize.setError(itemSize.getResources().getString(R.string.item_too_big));
                 isError = true;
             }
-
             if(!isError){
                 Item item = new Item(itemNameValue, itemDescriptionValue, itemSizeValue, characterWithItems.character.getId());
                 mItemViewModel.insert(item);
@@ -135,52 +148,18 @@ public class ItemActivity extends AppCompatActivity {
                 intent.putExtras(b);
                 startActivity(intent);
             }
-
         }
-
     }
 
     public void updateItem(View view){
 
-        boolean isError = false;
-        int itemSizeValue = 0;
-
-        TextInputLayout itemName = findViewById(R.id.itemName);
-
-        String itemNameValue = itemName.getEditText().getText().toString();
-
-        if(itemNameValue.trim().isEmpty()){
-            itemName.setError(getResources().getString(R.string.item_name));
-            isError = true;
-        }else{
-            itemName.setError(null);
-        }
-
-        TextInputLayout itemDescription = findViewById(R.id.itemDescription);
-        String itemDescriptionValue = itemDescription.getEditText().getText().toString();
-
-        TextInputLayout itemSize = findViewById(R.id.itemSize);
-        String itemSizeString = itemSize.getEditText().getText().toString();
-
-        if(itemSizeString.isEmpty() || itemSizeString == "0"){
-            itemSize.setError(getResources().getString(R.string.item_size_required));
-            isError = true;
-        }else{
-            if(itemSizeString != "0"){
-                itemSizeValue = Integer.parseInt(itemSizeString);
-                if(itemSizeValue == 0){
-                    itemSize.setError(getResources().getString(R.string.item_size_required));
-                    isError = true;
-                }
-            }
-        }
+        getItemValues();
 
         if(!isError){
             if(!characterWithItems.canHaveThisItem(itemSizeValue - updatedItem.getSize())){
                 itemSize.setError(itemSize.getResources().getString(R.string.item_too_big));
                 isError = true;
             }
-
             if(!isError){
                 Item item = new Item(itemNameValue, itemDescriptionValue, itemSizeValue, updatedItem.getCharacterId());
                 item.setId(updatedItem.getId());
@@ -193,8 +172,6 @@ public class ItemActivity extends AppCompatActivity {
                 intent.putExtras(b);
                 startActivity(intent);
             }
-
         }
-
     }
 }
