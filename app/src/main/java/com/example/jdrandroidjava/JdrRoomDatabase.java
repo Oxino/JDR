@@ -3,13 +3,11 @@ package com.example.jdrandroidjava;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -40,54 +38,39 @@ public abstract class JdrRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+    private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
 
-            // If you want to keep data through app restarts,
-            // comment out the following block
             databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more words, just add them.
+
                 CharacterDao characterDao = INSTANCE.characterDao();
                 characterDao.deleteAll();
 
-                Character character = new Character("Lucas", 100);
+                Character character = new Character("Perso1", 100);
                 characterDao.insert(character);
-                character = new Character("Lucas2", 150);
+                character = new Character("Perso2", 150);
                 characterDao.insert(character);
-                character = new Character("Lucas3", 350);
+                character = new Character("Perso3", 350);
                 characterDao.insert(character);
-                character = new Character("Lucas4", 100);
+                character = new Character("Perso4", 100);
                 characterDao.insert(character);
-                character = new Character("Lucas5", 100);
+                character = new Character("Perso5", 100);
                 characterDao.insert(character);
 
                 ItemDao itemDao = INSTANCE.itemDao();
 
-                Item item = new Item("obefeft", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 10, 1);
+                Item item = new Item("Epée", "Une super épée trop cool", 10, 1);
                 itemDao.insert(item);
-                item = new Item("dd", "1fezfzeffez fzefzef", 10, 1);
+                item = new Item("Manche", "Un bout de bois", 10, 1);
                 itemDao.insert(item);
-                item = new Item("obessfeft", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 15, 1);
+                item = new Item("Bouclier", "Un très vieux bouclier", 15, 1);
                 itemDao.insert(item);
-                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                item = new Item("Armure", "De l'acier rafistolé", 22, 1);
                 itemDao.insert(item);
-                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                item = new Item("Poulet", "Il faut bien manger", 22, 1);
                 itemDao.insert(item);
-                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
-                itemDao.insert(item);
-                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
-                itemDao.insert(item);                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
-                itemDao.insert(item);
-                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
-                itemDao.insert(item);
-                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
-                itemDao.insert(item);
-                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
-                itemDao.insert(item);
-
             });
         }
     };

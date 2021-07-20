@@ -9,8 +9,8 @@ import java.util.List;
 
 class CharacterWithItemsRepository {
 
-    private CharacterDao mCharacterDao;
-    private LiveData<List<CharacterWithItems>> mAllCharactersWithItems;
+    private final CharacterDao mCharacterDao;
+    private final LiveData<List<CharacterWithItems>> mAllCharactersWithItems;
 
     CharacterWithItemsRepository(Application application) {
         JdrRoomDatabase db = JdrRoomDatabase.getDatabase(application);

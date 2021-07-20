@@ -17,10 +17,8 @@ public class ItemActivity extends AppCompatActivity {
 
     private CharacterWithItems characterWithItems;
 
-    private CharacterWithItemsViewModel mCharacterWithItemsViewModel;
     private ItemViewModel mItemViewModel;
     private Item updatedItem;
-    private int characterId;
 
 
     @Override
@@ -29,11 +27,11 @@ public class ItemActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         if(b != null){
-            characterId = b.getInt("characterId");
+            int characterId = b.getInt("characterId");
 
             updatedItem = (Item) b.getSerializable("item");
 
-            mCharacterWithItemsViewModel = new ViewModelProvider(this).get(CharacterWithItemsViewModel.class);
+            CharacterWithItemsViewModel mCharacterWithItemsViewModel = new ViewModelProvider(this).get(CharacterWithItemsViewModel.class);
             mItemViewModel = new ViewModelProvider(this).get(ItemViewModel.class);
             mCharacterWithItemsViewModel.getCharacterWithItems(characterId).observe(this, characterWithItemsValue -> {
                 characterWithItems = characterWithItemsValue;

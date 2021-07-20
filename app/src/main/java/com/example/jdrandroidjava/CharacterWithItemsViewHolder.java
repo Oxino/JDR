@@ -1,6 +1,8 @@
 package com.example.jdrandroidjava;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
+    private final ImageView characterAvatar;
     private final TextView characterNameView;
     private final TextView characterNumberItemsView;
     private final TextView characterSizeItemsView;
@@ -27,9 +29,11 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
     private final int whiteColor;
     private final ImageView edit;
     private final ImageView delete;
+    private boolean isLongClicked = false;
 
     private CharacterWithItemsViewHolder(View itemView) {
         super(itemView);
+        characterAvatar = itemView.findViewById(R.id.character_image);
         characterNameView = itemView.findViewById(R.id.character_name);
         characterNumberItemsView = itemView.findViewById(R.id.character_number_items);
         characterSizeItemsView = itemView.findViewById(R.id.character_size_items);
@@ -57,7 +61,13 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
         characterCardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                setLayoutVisibility(View.INVISIBLE, View.VISIBLE);
+                isLongClicked = !isLongClicked;
+                if(isLongClicked){
+                    setLayoutVisibility(View.INVISIBLE, View.VISIBLE);
+                }else{
+                    setLayoutVisibility(View.VISIBLE, View.INVISIBLE);
+                }
+
                 return true;
             }
         });
@@ -97,6 +107,11 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void bind(CharacterWithItems characterWithItems, int baseLayoutVisibility, int onClickLayoutVisibility) {
+        if (characterWithItems.character.getImage() != null) {
+            Bitmap bmp = BitmapFactory.decodeByteArray(characterWithItems.character.getImage(), 0, characterWithItems.character.getImage().length);
+            characterAvatar.setImageBitmap(bmp);
+            characterAvatar.setBackgroundColor(whiteColor);
+        }
         characterNameView.setText(characterWithItems.character.getName());
         characterNumberItemsView.setText(getNumberItems(characterWithItems.items));
         characterSizeItemsView.setText(characterWithItems.getActualStorageToString());

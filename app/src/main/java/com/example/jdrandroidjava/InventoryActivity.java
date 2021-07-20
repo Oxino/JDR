@@ -18,16 +18,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Collections;
-import java.util.List;
 
 public class InventoryActivity extends AppCompatActivity {
 
     private CharacterWithItems characterWithItems;
     private ItemActionEnum itemAction;
 
-    private CharacterWithItemsViewModel mCharacterWithItemsViewModel;
-
-    private LinearLayout order;
     private ImageView arrowOrder;
     private boolean orderAsc = true;
 
@@ -43,7 +39,7 @@ public class InventoryActivity extends AppCompatActivity {
             if(itemAction != null){
                 showSnackbar();
             }
-            mCharacterWithItemsViewModel = new ViewModelProvider(this).get(CharacterWithItemsViewModel.class);
+            CharacterWithItemsViewModel mCharacterWithItemsViewModel = new ViewModelProvider(this).get(CharacterWithItemsViewModel.class);
             mCharacterWithItemsViewModel.getCharacterWithItems(id).observe(this, characterWithItemsValue -> {
                 characterWithItems = characterWithItemsValue;
                 setOrderItems();
@@ -57,20 +53,20 @@ public class InventoryActivity extends AppCompatActivity {
 
     private void showSnackbar(){
         if(itemAction == ItemActionEnum.ADD){
-            String snackbarTest = getResources().getString(R.string.item_add);
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
+            String snackbarText = getResources().getString(R.string.item_add);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), snackbarText, Snackbar.LENGTH_LONG);
             snackbar.show();
         }
         if(itemAction == ItemActionEnum.UPDATE){
-            String snackbarTest = getResources().getString(R.string.item_updated);
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
+            String snackbarText = getResources().getString(R.string.item_updated);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), snackbarText, Snackbar.LENGTH_LONG);
             snackbar.show();
         }
     }
 
     private void setViewValue(){
         arrowOrder = findViewById(R.id.arrow_order);
-        order = findViewById(R.id.order);
+        LinearLayout order = findViewById(R.id.order);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

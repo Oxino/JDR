@@ -35,5 +35,7 @@
     <string name="item_size">Taille</string>
     <string name="update_item">Modifier</string>
     <string name="item_updated">L\'objet à été mis à jour!</string>
-    <string name="item_button_update">Sauvegarder</string>
+    <string name="item_button_update">Modifier</string>
+    <string name="add_image">Importer une image</string>
+
 </resources>

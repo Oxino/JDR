@@ -10,9 +10,9 @@ import java.util.List;
 
 public class CharacterWithItemsViewModel extends AndroidViewModel {
 
-    private CharacterWithItemsRepository mRepository;
+    private final CharacterWithItemsRepository mRepository;
 
-    private LiveData<List<CharacterWithItems>> mAllCharactersWithItems;
+    private final LiveData<List<CharacterWithItems>> mAllCharactersWithItems;
 
 
     public CharacterWithItemsViewModel(@NonNull Application application) {
