@@ -105,8 +105,7 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
         if (characterWithItems.character.getImage() != null) {
             Bitmap bmp = BitmapFactory.decodeByteArray(characterWithItems.character.getImage(), 0, characterWithItems.character.getImage().length);
             characterAvatar.setImageBitmap(bmp);
-        }else {
-
+            characterAvatar.setBackgroundColor(whiteColor);
         }
         characterNameView.setText(characterWithItems.character.getName());
         characterNumberItemsView.setText(getNumberItems(characterWithItems.items));
