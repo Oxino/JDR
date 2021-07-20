@@ -26,7 +26,6 @@ public class Character implements Serializable {
     @ColumnInfo(name = "storage")
     protected int storage;
 
-    @NonNull
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB, name = "image")
     protected byte[] image;
 

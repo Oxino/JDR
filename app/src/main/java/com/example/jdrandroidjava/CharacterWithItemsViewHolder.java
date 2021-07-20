@@ -102,8 +102,12 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void bind(CharacterWithItems characterWithItems, int isBaseLayoutVisible, int isOnClickLayoutVisible) {
-        Bitmap bmp = BitmapFactory.decodeByteArray(characterWithItems.character.getImage(), 0, characterWithItems.character.getImage().length);
-        characterAvatar.setImageBitmap(bmp);
+        if (characterWithItems.character.getImage() != null) {
+            Bitmap bmp = BitmapFactory.decodeByteArray(characterWithItems.character.getImage(), 0, characterWithItems.character.getImage().length);
+            characterAvatar.setImageBitmap(bmp);
+        }else {
+
+        }
         characterNameView.setText(characterWithItems.character.getName());
         characterNumberItemsView.setText(getNumberItems(characterWithItems.items));
         characterSizeItemsView.setText(characterWithItems.getActualStorageToString());

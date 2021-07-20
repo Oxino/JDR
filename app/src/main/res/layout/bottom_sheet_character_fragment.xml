@@ -57,10 +57,16 @@
             android:visibility="visible">
 
             <ImageView
-                android:id="@+id/character_image"
+                android:id="@+id/preview_character_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/preview_default_character_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher_foreground" />
 
             <Button
                 android:id="@+id/add_character_img"
