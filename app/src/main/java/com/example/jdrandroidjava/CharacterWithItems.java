@@ -4,6 +4,7 @@ import androidx.room.Embedded;
 import androidx.room.Relation;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
 
 public class CharacterWithItems implements Serializable {
@@ -32,6 +33,5 @@ public class CharacterWithItems implements Serializable {
         }
         return size;
     }
-
 
 }

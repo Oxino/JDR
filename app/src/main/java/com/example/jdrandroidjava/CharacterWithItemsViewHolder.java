@@ -67,8 +67,8 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), InventoryActivity.class);
                 Bundle b = new Bundle();
-                b.putInt("characterId", characterWithItems.character.getId()); //Your id
-                intent.putExtras(b); //Put your id to your next Intent
+                b.putInt("characterId", characterWithItems.character.getId());
+                intent.putExtras(b);
                 v.getContext().startActivity(intent);
             }
         });

@@ -23,5 +23,6 @@
     <string name="input_error_character_size_too_low">Le personnage contient trop d\'objet</string>
     <string name="item_nodata">Le personnage contient plus d\objet que cette taille</string>
     <string name="delete_item">Voulez vous supprimer</string>
+    <string name="order_alphabet">A</string>
 
 </resources>
