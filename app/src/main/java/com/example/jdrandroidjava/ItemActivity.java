@@ -11,10 +11,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class AddObjectActivity extends AppCompatActivity {
+public class ItemActivity extends AppCompatActivity {
 
     private CharacterWithItems characterWithItems;
 
@@ -41,7 +40,7 @@ public class AddObjectActivity extends AppCompatActivity {
                 setViewValue();
             });
         }else{
-            Intent intent = new Intent(AddObjectActivity.this, InventoryActivity.class);
+            Intent intent = new Intent(ItemActivity.this, InventoryActivity.class);
             startActivity(intent);
         }
             setContentView(R.layout.activity_addobject);
@@ -63,23 +62,22 @@ public class AddObjectActivity extends AppCompatActivity {
 
             TextInputLayout itemText = findViewById(R.id.itemName);
             itemText.getEditText().setText(updatedItem.getName());
-            /* String itemName = itemText.getEditText().getText().toString();*/
 
             itemText = findViewById(R.id.itemDescription);
             itemText.getEditText().setText(updatedItem.getDescription());
-            /* String itemDescription = itemText.getEditText().getText().toString();*/
 
             itemText = findViewById(R.id.itemSize);
             itemText.getEditText().setText(String.valueOf(updatedItem.getSize()));
-                /*String itemSizeString = itemText.getEditText().getText().toString();
-                itemSizeValue = Integer.parseInt(itemSizeString);*/
 
         }
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent intent = new Intent(AddObjectActivity.this, InventoryActivity.class);
+        Intent intent = new Intent(this, InventoryActivity.class);
+        Bundle b = new Bundle();
+        b.putInt("characterId", characterWithItems.character.getId());
+        intent.putExtras(b);
         startActivity(intent);
 
         return super.onOptionsItemSelected(item);
@@ -105,21 +103,24 @@ public class AddObjectActivity extends AppCompatActivity {
         String itemDescriptionValue = itemDescription.getEditText().getText().toString();
 
         TextInputLayout itemSize = findViewById(R.id.itemSize);
-        String itemSizeString = itemDescription.getEditText().getText().toString();
+        String itemSizeString = itemSize.getEditText().getText().toString();
 
         if(itemSizeString.isEmpty() || itemSizeString == "0"){
             itemSize.setError(getResources().getString(R.string.item_size));
             isError = true;
         }else{
-            itemSize.setError(null);
-            itemSizeValue = Integer.parseInt(itemSizeString);
+            if(itemSizeString != "0"){
+                itemSizeValue = Integer.parseInt(itemSizeString);
+                if(itemSizeValue == 0){
+                    itemSize.setError(getResources().getString(R.string.item_size));
+                    isError = true;
+                }
+            }
         }
 
         if(!isError){
-            if(characterWithItems.canHaveThisItem(itemSizeValue)){
-                String snackbarTest = getResources().getString(R.string.item_too_big);
-                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
-                snackbar.show();
+            if(!characterWithItems.canHaveThisItem(itemSizeValue)){
+                itemSize.setError(itemSize.getResources().getString(R.string.item_too_big));
                 isError = true;
             }
 
@@ -176,12 +177,13 @@ public class AddObjectActivity extends AppCompatActivity {
 
         if(!isError){
             if(!characterWithItems.canHaveThisItem(itemSizeValue - updatedItem.getSize())){
-                itemSize.getResources().getString(R.string.item_too_big);
+                itemSize.setError(itemSize.getResources().getString(R.string.item_too_big));
                 isError = true;
             }
 
             if(!isError){
-                Item item = new Item(itemNameValue, itemDescriptionValue, itemSizeValue, updatedItem.getId());
+                Item item = new Item(itemNameValue, itemDescriptionValue, itemSizeValue, updatedItem.getCharacterId());
+                item.setId(updatedItem.getId());
                 mItemViewModel.update(item);
 
                 Intent intent = new Intent(this, InventoryActivity.class);

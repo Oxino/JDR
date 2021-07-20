@@ -34,10 +34,7 @@ public class CharacterWithItems{
     }
 
     public boolean canHaveThisItem(int size){
-        return (this.getActualStorage() + size) - this.character.storage > 0;
-    }
-    public boolean canUpdateThisItem(int size) {
-        return (this.getActualStorage() + size) - this.character.storage > 0;
+        return this.character.storage - (this.getActualStorage() + size) >= 0;
     }
 
 }

@@ -20,9 +20,10 @@ class ItemRepository {
             mItemDao.insert(item);
         });
     }
+
     void update(Item item){
         JdrRoomDatabase.databaseWriteExecutor.execute(() -> {
-            mItemDao.updateItem(item.getName(), item.getSize(), item.getDescription(), item.characterId);;
+            mItemDao.updateItem(item.getName(), item.getSize(), item.getDescription(), item.getId());
         });
     }
 

@@ -6,17 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
 
 class ItemViewHolder extends RecyclerView.ViewHolder{
 
@@ -55,7 +50,7 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AddObjectActivity.class);
+                Intent intent = new Intent(view.getContext(), ItemActivity.class);
                 Bundle b = new Bundle();
                 b.putSerializable("item", item);
                 b.putInt("characterId", item.characterId);
