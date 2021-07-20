@@ -65,18 +65,13 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
 
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                updateBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(view.getContext(), ItemActivity.class);
-                        Bundle b = new Bundle();
-                        b.putSerializable("item", item);
-                        b.putInt("characterId", item.characterId);
-                        intent.putExtras(b);
-                        view.getContext().startActivity(intent);
-                    }
-                });
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ItemActivity.class);
+                Bundle b = new Bundle();
+                b.putSerializable("item", item);
+                b.putInt("characterId", item.characterId);
+                intent.putExtras(b);
+                view.getContext().startActivity(intent);
             }
         });
     }
