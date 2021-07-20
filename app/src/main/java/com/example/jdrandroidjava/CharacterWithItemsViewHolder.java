@@ -23,7 +23,6 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
     private final TextView characterSizeItemsView;
     private final CardView characterCardView;
     private final LinearLayout baseLayoutView;
-    private final LinearLayout onClickLayoutView;
     private final int importantColor;
     private final int whiteColor;
     private final ImageView edit;
@@ -36,7 +35,6 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
         characterSizeItemsView = itemView.findViewById(R.id.character_size_items);
         characterCardView = itemView.findViewById(R.id.character_card_view);
         baseLayoutView = itemView.findViewById(R.id.base_layout);
-        onClickLayoutView = itemView.findViewById(R.id.onClick_layout);
         edit = itemView.findViewById(R.id.edit);
         delete = itemView.findViewById(R.id.delete);
         importantColor = ContextCompat.getColor(itemView.getContext(), R.color.important);
@@ -45,7 +43,8 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
 
     private void setLayoutVisibility(int baseLayoutVisibility, int onClickLayoutVisibility){
         baseLayoutView.setVisibility(baseLayoutVisibility);
-        onClickLayoutView.setVisibility(onClickLayoutVisibility);
+        edit.setVisibility(onClickLayoutVisibility);
+        delete.setVisibility(onClickLayoutVisibility);
 
         if(baseLayoutVisibility == View.VISIBLE){
             characterCardView.setCardBackgroundColor(whiteColor);
