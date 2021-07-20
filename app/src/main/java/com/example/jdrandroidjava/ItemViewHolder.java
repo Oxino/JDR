@@ -1,16 +1,15 @@
 package com.example.jdrandroidjava;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 class ItemViewHolder extends RecyclerView.ViewHolder{
@@ -20,8 +19,9 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
     private final TextView description;
     private final LinearLayout expandedView;
     private final RelativeLayout layout;
-    private final CardView card;
-    private final Button updateBtn;
+    private final LinearLayout element;
+    private final ImageView arrow;
+    private final Button deleteBtn;
 
     private boolean isExpanded = false;
 
@@ -31,31 +31,31 @@ class ItemViewHolder extends RecyclerView.ViewHolder{
         size = itemView.findViewById(R.id.size);
         description = itemView.findViewById(R.id.description);
         expandedView = itemView.findViewById(R.id.expanded_view);
-        card = itemView.findViewById(R.id.card);
+        element = itemView.findViewById(R.id.element);
         layout = itemView.findViewById(R.id.layout);
-        updateBtn = itemView.findViewById(R.id.update_item);
+        arrow = itemView.findViewById(R.id.arrow);
+        deleteBtn = itemView.findViewById(R.id.delete_item);
     }
 
 
     private void setListener(Item item){
-        card.setOnClickListener(new View.OnClickListener() {
+        element.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isExpanded = !isExpanded;
                 int visibleValue = isExpanded ? View.VISIBLE : View.GONE;
                 expandedView.setVisibility(visibleValue);
+                float rotateXArrow = isExpanded ? 0 : 180;
+                arrow.setRotationX(rotateXArrow);
             }
         });
 
-        updateBtn.setOnClickListener(new View.OnClickListener() {
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ItemActivity.class);
-                Bundle b = new Bundle();
-                b.putSerializable("item", item);
-                b.putInt("characterId", item.characterId);
-                intent.putExtras(b);
-                view.getContext().startActivity(intent);
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                BottomSheetItemFragment bottomSheetItemFragment = BottomSheetItemFragment.getInstance(item, ItemActionEnum.DELETE);
+                bottomSheetItemFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
             }
         });
     }

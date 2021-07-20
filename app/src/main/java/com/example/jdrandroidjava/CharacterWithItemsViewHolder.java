@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +23,6 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
     private final TextView characterSizeItemsView;
     private final CardView characterCardView;
     private final LinearLayout baseLayoutView;
-    private final LinearLayout onClickLayoutView;
     private final int importantColor;
     private final int whiteColor;
     private final ImageView edit;
@@ -35,18 +35,18 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
         characterSizeItemsView = itemView.findViewById(R.id.character_size_items);
         characterCardView = itemView.findViewById(R.id.character_card_view);
         baseLayoutView = itemView.findViewById(R.id.base_layout);
-        onClickLayoutView = itemView.findViewById(R.id.onClick_layout);
         edit = itemView.findViewById(R.id.edit);
         delete = itemView.findViewById(R.id.delete);
         importantColor = ContextCompat.getColor(itemView.getContext(), R.color.important);
         whiteColor = ContextCompat.getColor(itemView.getContext(), R.color.white);
     }
 
-    private void setLayoutVisibility(int isBaseLayoutVisible, int isOnClickLayoutVisible){
-        baseLayoutView.setVisibility(isBaseLayoutVisible);
-        onClickLayoutView.setVisibility(isOnClickLayoutVisible);
+    private void setLayoutVisibility(int baseLayoutVisibility, int onClickLayoutVisibility){
+        baseLayoutView.setVisibility(baseLayoutVisibility);
+        edit.setVisibility(onClickLayoutVisibility);
+        delete.setVisibility(onClickLayoutVisibility);
 
-        if(isBaseLayoutVisible == View.VISIBLE){
+        if(baseLayoutVisibility == View.VISIBLE){
             characterCardView.setCardBackgroundColor(whiteColor);
         }else{
             characterCardView.setCardBackgroundColor(importantColor);
@@ -57,9 +57,7 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
         characterCardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                characterCardView.setCardBackgroundColor(ContextCompat.getColor(v.getContext(), R.color.important));
-                baseLayoutView.setVisibility(View.INVISIBLE);
-                onClickLayoutView.setVisibility(View.VISIBLE);
+                setLayoutVisibility(View.INVISIBLE, View.VISIBLE);
                 return true;
             }
         });
@@ -79,8 +77,9 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems.character, CharacterActionEnum.UPDATE);
+                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems, CharacterAction.UPDATE);
                 bottomSheetCharacterFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
+                setLayoutVisibility(View.VISIBLE, View.INVISIBLE);
             }
         });
 
@@ -88,19 +87,20 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems.character, CharacterActionEnum.DELETE);
+                BottomSheetCharacterFragment bottomSheetCharacterFragment = BottomSheetCharacterFragment.getInstance(characterWithItems, CharacterAction.DELETE);
                 bottomSheetCharacterFragment.showNow(activity.getSupportFragmentManager(), BottomSheetCharacterFragment.TAG);
+                setLayoutVisibility(View.VISIBLE, View.INVISIBLE);
             }
         });
 
 
     }
 
-    public void bind(CharacterWithItems characterWithItems, int isBaseLayoutVisible, int isOnClickLayoutVisible) {
+    public void bind(CharacterWithItems characterWithItems, int baseLayoutVisibility, int onClickLayoutVisibility) {
         characterNameView.setText(characterWithItems.character.getName());
         characterNumberItemsView.setText(getNumberItems(characterWithItems.items));
         characterSizeItemsView.setText(characterWithItems.getActualStorageToString());
-        setLayoutVisibility(isBaseLayoutVisible, isOnClickLayoutVisible);
+        setLayoutVisibility(baseLayoutVisibility, onClickLayoutVisibility);
 
         setListener(characterWithItems);
     }

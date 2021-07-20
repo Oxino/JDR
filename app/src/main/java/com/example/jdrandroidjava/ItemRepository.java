@@ -27,5 +27,11 @@ class ItemRepository {
         });
     }
 
+    void delete(int id) {
+        JdrRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mItemDao.delete(id);
+        });
+    }
+
 }
 

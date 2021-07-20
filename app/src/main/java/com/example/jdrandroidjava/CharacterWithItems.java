@@ -6,7 +6,7 @@ import androidx.room.Relation;
 import java.io.Serializable;
 import java.util.List;
 
-public class CharacterWithItems{
+public class CharacterWithItems  implements Serializable {
 
     @Embedded
     public Character character;
@@ -37,4 +37,6 @@ public class CharacterWithItems{
         return this.character.storage - (this.getActualStorage() + size) >= 0;
     }
 
+
 }
+

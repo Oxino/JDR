@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 public class CharacterWithItemsAdapter extends ListAdapter<CharacterWithItems, CharacterWithItemsViewHolder> {
-    int isBaseLayoutVisible = View.VISIBLE;
-    int isOnClickLayoutVisible = View.INVISIBLE;
+    int baseLayoutVisibility = View.VISIBLE;
+    int onClickLayoutVisibility = View.INVISIBLE;
 
     public CharacterWithItemsAdapter(@NonNull DiffUtil.ItemCallback<CharacterWithItems> diffCallback) {
         super(diffCallback);
@@ -24,12 +24,12 @@ public class CharacterWithItemsAdapter extends ListAdapter<CharacterWithItems, C
     @Override
     public void onBindViewHolder(CharacterWithItemsViewHolder holder, int position) {
         CharacterWithItems current = getItem(position);
-        holder.bind(current, isBaseLayoutVisible, isOnClickLayoutVisible);
+        holder.bind(current, baseLayoutVisibility, onClickLayoutVisibility);
     }
 
-    public void updateLayoutVisibility(int isBaseLayoutVisible, int isOnClickLayoutVisible){
-        this.isBaseLayoutVisible = isBaseLayoutVisible;
-        this.isOnClickLayoutVisible = isOnClickLayoutVisible;
+    public void updateLayoutVisibility(int baseLayoutVisibility, int onClickLayoutVisibility){
+        this.baseLayoutVisibility = baseLayoutVisibility;
+        this.onClickLayoutVisibility = onClickLayoutVisibility;
     }
 
     static class WordDiff extends DiffUtil.ItemCallback<CharacterWithItems> {

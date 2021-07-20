@@ -1,5 +1,6 @@
 package com.example.jdrandroidjava;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,15 +13,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.jdrandroidjava.CharacterViewModel;
+import com.example.jdrandroidjava.Character;
+import com.example.jdrandroidjava.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
+
 public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
 
-    public static   final String TAG="ModalBottomSheetFragmentMenu";
+    public static   final String TAG="ModelBottomSheetCharacterFragment";
 
     private CharacterViewModel mCharacterViewModel;
 
@@ -40,10 +46,10 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
     private RelativeLayout updateAddButtons;
 
 
-    public static BottomSheetCharacterFragment getInstance(Character character, CharacterActionEnum action){
+    public static BottomSheetCharacterFragment getInstance(CharacterWithItems characterWithItems, CharacterAction action){
         BottomSheetCharacterFragment bottomSheetCharacterFragment = new BottomSheetCharacterFragment();
         Bundle args = new Bundle();
-        args.putSerializable("character", character);
+        args.putSerializable("characterWithItems", characterWithItems);
         args.putSerializable("action", action);
         bottomSheetCharacterFragment.setArguments(args);
         return bottomSheetCharacterFragment;
@@ -86,7 +92,7 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
                 String inputSizeString = inputSize.getEditText().getText().toString();
                 int inputSizeValue = 0;
 
-                if(!hasInputError(inputNameValue, inputSizeString)){
+                if(!hasInputError(inputNameValue, inputSizeString, null)){
                     inputSizeValue = Integer.parseInt(inputSizeString);
                     Character newCharacter = new Character(inputNameValue, inputSizeValue);
                     mCharacterViewModel.insert(newCharacter);
@@ -99,20 +105,20 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
         });
 
         Bundle bundle = this.getArguments();
-        Character receivedCharacter;
-        CharacterActionEnum receivedAction;
+        CharacterWithItems receivedCharacterWithItems;
+        CharacterAction receivedAction;
 
         if (bundle != null) {
             try {
-                receivedCharacter = (Character) bundle.getSerializable("character");
-                receivedAction = (CharacterActionEnum) bundle.getSerializable("action");
+                receivedCharacterWithItems = (CharacterWithItems) bundle.getSerializable("characterWithItems");
+                receivedAction = (CharacterAction) bundle.getSerializable("action");
 
-                if(receivedCharacter != null){
-                    if(receivedAction == CharacterActionEnum.UPDATE){
-                        setUpdateFragment(receivedCharacter);
+                if(receivedCharacterWithItems != null){
+                    if(receivedAction == CharacterAction.UPDATE){
+                        setUpdateFragment(receivedCharacterWithItems);
                     }
-                    if(receivedAction == CharacterActionEnum.DELETE){
-                        setDeleteFragment(receivedCharacter);
+                    if(receivedAction == CharacterAction.DELETE){
+                        setDeleteFragment(receivedCharacterWithItems);
                     }
                 }
             }catch (Exception e){
@@ -123,9 +129,9 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
         return view;
     }
 
-    private void setUpdateFragment(Character character){
-        inputNameEdit.setText(character.getName());
-        inputSizeEdit.setText(String.valueOf(character.getStorage()));
+    private void setUpdateFragment(CharacterWithItems characterWithItems){
+        inputNameEdit.setText(characterWithItems.character.getName());
+        inputSizeEdit.setText(String.valueOf(characterWithItems.character.getStorage()));
         addBtn.setVisibility(View.GONE);
         updateBtn.setVisibility(View.VISIBLE);
         titleAdd.setVisibility(View.GONE);
@@ -137,8 +143,9 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
                 String inputSizeString = inputSize.getEditText().getText().toString();
                 int inputSizeValue = 0;
 
-                if(!hasInputError(inputNameValue, inputSizeString)){
-                    Character newCharacter = new Character(inputNameValue, inputSizeValue, character.getId());
+                if(!hasInputError(inputNameValue, inputSizeString, characterWithItems)){
+                    inputSizeValue = Integer.parseInt(inputSizeString);
+                    Character newCharacter = new Character(inputNameValue, inputSizeValue, characterWithItems.character.getId());
                     mCharacterViewModel.update(newCharacter);
                     String snackbarTest = getResources().getString(R.string.confirm_common) + " " + inputNameValue + " "+ getResources().getString(R.string.confirm_update);
                     Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
@@ -149,17 +156,18 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
         });
     }
 
-    private void setDeleteFragment(Character character){
+    private void setDeleteFragment(CharacterWithItems characterWithItems){
         deleteLayout.setVisibility(View.VISIBLE);
         updateAddLayout.setVisibility(View.GONE);
         updateAddButtons.setVisibility(View.GONE);
         titleAdd.setVisibility(View.GONE);
         titleDelete.setVisibility(View.VISIBLE);
+        titleDelete.setText(getResources().getString(R.string.delete_character) + " " + characterWithItems.character.getName() + " " + getResources().getString(R.string.question));
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCharacterViewModel.delete(character.getId());
-                String snackbarTest = getResources().getString(R.string.confirm_common) + " " + character.getName() + " "+ getResources().getString(R.string.confirm_delete);
+                mCharacterViewModel.delete(characterWithItems.character.getId());
+                String snackbarTest = getResources().getString(R.string.confirm_common) + " " + characterWithItems.character.getName() + " "+ getResources().getString(R.string.confirm_delete);
                 Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
                 snackbar.show();
                 dismiss();
@@ -174,23 +182,28 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
         });
     }
 
-    private boolean hasInputError(String name, String size){
+    private boolean hasInputError(String name, String size, CharacterWithItems characterWithItems){
         int inputSizeValue = 0;
         boolean isError = false;
 
-        if(!name.isEmpty() && size != "0"){
-            inputSizeValue = Integer.parseInt(size);
-            if(inputSizeValue == 0){
-                inputSizeEdit.setError(getResources().getString(R.string.input_error_character_size));
-                isError = true;
-            }
-        }else{
-            inputSizeEdit.setError(getResources().getString(R.string.input_error_character_size));
+        if(name.isEmpty()){
+            inputName.setError(getResources().getString(R.string.input_error_character_name));
             isError = true;
         }
 
-        if(name.isEmpty()){
-            inputNameEdit.setError(getResources().getString(R.string.input_error_character_name));
+        if(size != "0"){
+            inputSizeValue = Integer.parseInt(size);
+            if(inputSizeValue == 0){
+                inputSize.setError(getResources().getString(R.string.input_error_character_size));
+                isError = true;
+            }
+        }else{
+            inputSize.setError(getResources().getString(R.string.input_error_character_size));
+            isError = true;
+        }
+
+        if(characterWithItems != null && inputSizeValue < characterWithItems.getActualStorage()){
+            inputSize.setError(getResources().getString(R.string.input_error_character_size_too_low));
             isError = true;
         }
 

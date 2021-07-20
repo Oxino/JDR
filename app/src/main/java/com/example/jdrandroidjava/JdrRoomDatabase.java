@@ -74,6 +74,20 @@ public abstract class JdrRoomDatabase extends RoomDatabase {
                 itemDao.insert(item);
                 item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
                 itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+
             });
         }
     };

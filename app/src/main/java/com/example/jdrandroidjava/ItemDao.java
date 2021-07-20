@@ -14,9 +14,6 @@ public interface ItemDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Item item);
 
-    @Query("DELETE FROM item_table")
-    void deleteAll();
-
     @Query("DELETE FROM item_table WHERE id = :id")
     void delete(int id);
 
