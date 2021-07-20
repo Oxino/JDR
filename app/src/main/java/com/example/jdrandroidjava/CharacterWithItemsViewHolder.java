@@ -1,6 +1,8 @@
 package com.example.jdrandroidjava;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
+    private final ImageView characterAvatar;
     private final TextView characterNameView;
     private final TextView characterNumberItemsView;
     private final TextView characterSizeItemsView;
@@ -30,6 +33,7 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
 
     private CharacterWithItemsViewHolder(View itemView) {
         super(itemView);
+        characterAvatar = itemView.findViewById(R.id.character_image);
         characterNameView = itemView.findViewById(R.id.character_name);
         characterNumberItemsView = itemView.findViewById(R.id.character_number_items);
         characterSizeItemsView = itemView.findViewById(R.id.character_size_items);
@@ -97,6 +101,11 @@ class CharacterWithItemsViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void bind(CharacterWithItems characterWithItems, int baseLayoutVisibility, int onClickLayoutVisibility) {
+        if (characterWithItems.character.getImage() != null) {
+            Bitmap bmp = BitmapFactory.decodeByteArray(characterWithItems.character.getImage(), 0, characterWithItems.character.getImage().length);
+            characterAvatar.setImageBitmap(bmp);
+            characterAvatar.setBackgroundColor(whiteColor);
+        }
         characterNameView.setText(characterWithItems.character.getName());
         characterNumberItemsView.setText(getNumberItems(characterWithItems.items));
         characterSizeItemsView.setText(characterWithItems.getActualStorageToString());

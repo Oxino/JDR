@@ -1,10 +1,12 @@
 package com.example.jdrandroidjava;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,7 +24,12 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.ArrayList;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import static android.app.Activity.RESULT_OK;
 
 public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
 
@@ -41,10 +48,14 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
     private MaterialButton updateBtn;
     private MaterialButton deleteBtn;
     private MaterialButton cancelBtn;
+    private MaterialButton addImageBtn;
     private LinearLayout updateAddLayout;
     private LinearLayout deleteLayout;
     private RelativeLayout updateAddButtons;
+    private ImageView previewCharacterImage;
+    private Uri uriToSave;
 
+    int SELECT_PICTURE = 200;
 
     public static BottomSheetCharacterFragment getInstance(CharacterWithItems characterWithItems, CharacterActionEnum action){
         BottomSheetCharacterFragment bottomSheetCharacterFragment = new BottomSheetCharacterFragment();
@@ -69,6 +80,7 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
         updateBtn = view.findViewById(R.id.update_character);
         deleteBtn = view.findViewById(R.id.delete_character);
         cancelBtn = view.findViewById(R.id.cancel_character);
+        addImageBtn = view.findViewById(R.id.add_character_img);
 
         inputName = view.findViewById(R.id.nameInputLayout);
         inputSize = view.findViewById(R.id.sizeInputLayout);
@@ -83,18 +95,51 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
 
         updateAddButtons = view.findViewById(R.id.update_add_buttons);
 
+        previewCharacterImage = view.findViewById(R.id.preview_character_image);
+
         mCharacterViewModel = new ViewModelProvider(this).get(CharacterViewModel.class);
+
+
+
+        addImageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageChooser();
+            }
+        });
+
+
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String inputNameValue = inputName.getEditText().getText().toString();
                 String inputSizeString = inputSize.getEditText().getText().toString();
+                InputStream iStream = null;
+                byte[] avatarImage = null;
+                Character newCharacter;
+                if (uriToSave != null) {
+                    try {
+                        iStream = getContext().getContentResolver().openInputStream(uriToSave);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    avatarImage = new byte[0];
+                    try {
+                        avatarImage = getBytes(iStream);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 int inputSizeValue = 0;
 
                 if(!hasInputError(inputNameValue, inputSizeString, null)){
                     inputSizeValue = Integer.parseInt(inputSizeString);
-                    Character newCharacter = new Character(inputNameValue, inputSizeValue);
+                    if(avatarImage != null) {
+                        newCharacter = new Character(inputNameValue, inputSizeValue, avatarImage);
+                    }else{
+                        newCharacter = new Character(inputNameValue, inputSizeValue);
+                    }
                     mCharacterViewModel.insert(newCharacter);
                     String snackbarTest = getResources().getString(R.string.confirm_common) + " " + inputNameValue + " "+ getResources().getString(R.string.confirm_add);
                     Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content), snackbarTest, Snackbar.LENGTH_LONG);
@@ -129,6 +174,45 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
         return view;
     }
 
+
+    void imageChooser() {
+
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            if (requestCode == SELECT_PICTURE) {
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    String test = selectedImageUri.getPath();
+                    uriToSave = selectedImageUri;
+                    previewCharacterImage.setImageURI(selectedImageUri);
+                    previewCharacterImage.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
+    public byte[] getBytes(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+
+        int len = 0;
+        while ((len = inputStream.read(buffer)) != -1) {
+            byteBuffer.write(buffer, 0, len);
+        }
+        return byteBuffer.toByteArray();
+    }
+
     private void setUpdateFragment(CharacterWithItems characterWithItems){
         inputNameEdit.setText(characterWithItems.character.getName());
         inputSizeEdit.setText(String.valueOf(characterWithItems.character.getStorage()));
@@ -136,6 +220,7 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
         updateBtn.setVisibility(View.VISIBLE);
         titleAdd.setVisibility(View.GONE);
         titleUpdate.setVisibility(View.VISIBLE);
+        addImageBtn.setVisibility(View.GONE);
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
