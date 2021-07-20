@@ -1,8 +1,12 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.characterWithItemsClass;
 
 
 import android.app.Application;
 import androidx.lifecycle.LiveData;
+
+import com.example.jdrandroidjava.JdrRoomDatabase;
+import com.example.jdrandroidjava.characterClass.CharacterDao;
+import com.example.jdrandroidjava.characterWithItemsClass.CharacterWithItems;
 
 import java.util.List;
 

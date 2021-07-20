@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.characterWithItemsClass;
 
 
 import android.view.View;
@@ -32,7 +32,7 @@ public class CharacterWithItemsAdapter extends ListAdapter<CharacterWithItems, C
         this.onClickLayoutVisibility = onClickLayoutVisibility;
     }
 
-    static class WordDiff extends DiffUtil.ItemCallback<CharacterWithItems> {
+    public static class WordDiff extends DiffUtil.ItemCallback<CharacterWithItems> {
 
         @Override
         public boolean areItemsTheSame(@NonNull CharacterWithItems oldItem, @NonNull CharacterWithItems newItem) {

@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.characterWithItemsClass;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,6 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.jdrandroidjava.itemClass.Item;
+import com.example.jdrandroidjava.R;
+import com.example.jdrandroidjava.activity.InventoryActivity;
+import com.example.jdrandroidjava.bottomSheetFragment.BottomSheetCharacterFragment;
+import com.example.jdrandroidjava.characterClass.CharacterActionEnum;
 
 import java.util.List;
 

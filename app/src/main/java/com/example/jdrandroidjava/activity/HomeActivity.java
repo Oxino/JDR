@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.jdrandroidjava.bottomSheetFragment.BottomSheetCharacterFragment;
+import com.example.jdrandroidjava.characterWithItemsClass.CharacterWithItemsAdapter;
+import com.example.jdrandroidjava.characterWithItemsClass.CharacterWithItemsViewModel;
+import com.example.jdrandroidjava.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomeActivity extends AppCompatActivity {

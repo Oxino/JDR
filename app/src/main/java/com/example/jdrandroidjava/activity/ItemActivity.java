@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.jdrandroidjava.characterWithItemsClass.CharacterWithItems;
+import com.example.jdrandroidjava.characterWithItemsClass.CharacterWithItemsViewModel;
+import com.example.jdrandroidjava.itemClass.Item;
+import com.example.jdrandroidjava.itemClass.ItemActionEnum;
+import com.example.jdrandroidjava.itemClass.ItemViewModel;
+import com.example.jdrandroidjava.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class ItemActivity extends AppCompatActivity {

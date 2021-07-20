@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -14,6 +14,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.jdrandroidjava.characterWithItemsClass.CharacterWithItems;
+import com.example.jdrandroidjava.characterWithItemsClass.CharacterWithItemsViewModel;
+import com.example.jdrandroidjava.itemClass.ItemActionEnum;
+import com.example.jdrandroidjava.itemClass.ItemAdapter;
+import com.example.jdrandroidjava.R;
+import com.example.jdrandroidjava.sort.SortByAlphabet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.itemClass;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -6,6 +6,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+
+import com.example.jdrandroidjava.characterClass.Character;
 
 import java.io.Serializable;
 

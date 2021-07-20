@@ -1,10 +1,13 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.characterClass;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.jdrandroidjava.characterClass.Character;
+import com.example.jdrandroidjava.characterClass.CharacterRepository;
 
 import java.util.List;
 

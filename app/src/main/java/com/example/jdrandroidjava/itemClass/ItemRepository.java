@@ -1,6 +1,10 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.itemClass;
 
 import android.app.Application;
+
+import com.example.jdrandroidjava.JdrRoomDatabase;
+import com.example.jdrandroidjava.itemClass.Item;
+import com.example.jdrandroidjava.itemClass.ItemDao;
 
 class ItemRepository {
 

@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.itemClass;
 
 import android.view.ViewGroup;
 
@@ -23,7 +23,7 @@ public class ItemAdapter extends ListAdapter<Item, ItemViewHolder> {
         holder.bind(current);
     }
 
-    static class WordDiff extends DiffUtil.ItemCallback<Item> {
+    public static class WordDiff extends DiffUtil.ItemCallback<Item> {
 
         @Override
         public boolean areItemsTheSame(@NonNull Item oldItem, @NonNull Item newItem) {

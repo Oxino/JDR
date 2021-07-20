@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.bottomSheetFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.jdrandroidjava.itemClass.Item;
+import com.example.jdrandroidjava.itemClass.ItemActionEnum;
+import com.example.jdrandroidjava.itemClass.ItemViewModel;
+import com.example.jdrandroidjava.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 

@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.characterClass;
 
 public enum CharacterActionEnum {
     DELETE,

@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.bottomSheetFragment;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,9 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.jdrandroidjava.CharacterViewModel;
-import com.example.jdrandroidjava.Character;
+import com.example.jdrandroidjava.characterClass.CharacterViewModel;
+import com.example.jdrandroidjava.characterWithItemsClass.CharacterWithItems;
 import com.example.jdrandroidjava.R;
+import com.example.jdrandroidjava.characterClass.Character;
+import com.example.jdrandroidjava.characterClass.CharacterActionEnum;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -285,6 +287,8 @@ public class BottomSheetCharacterFragment extends BottomSheetDialogFragment {
                     }else{
                         inputSize.setError(null);
                     }
+                }else{
+                    inputSize.setError(null);
                 }
             }
         }else{

@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.itemClass;
 
 import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;

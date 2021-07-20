@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.itemClass;
 
 public enum ItemActionEnum {
     DELETE,

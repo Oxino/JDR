@@ -1,10 +1,12 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.itemClass;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import com.example.jdrandroidjava.itemClass.Item;
 
 import java.util.List;
 

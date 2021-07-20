@@ -8,6 +8,12 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.jdrandroidjava.characterClass.Character;
+import com.example.jdrandroidjava.characterClass.CharacterDao;
+import com.example.jdrandroidjava.itemClass.Item;
+import com.example.jdrandroidjava.itemClass.ItemDao;
+
+import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,7 +26,7 @@ public abstract class JdrRoomDatabase extends RoomDatabase {
     // --- DAO ---
     public abstract ItemDao itemDao();
     public abstract CharacterDao characterDao();
-    static final ExecutorService databaseWriteExecutor =
+    public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(1);
 
     // --- INSTANCE ---

@@ -1,7 +1,10 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.characterWithItemsClass;
 
 import androidx.room.Embedded;
 import androidx.room.Relation;
+
+import com.example.jdrandroidjava.itemClass.Item;
+import com.example.jdrandroidjava.characterClass.Character;
 
 import java.io.Serializable;
 import java.util.List;
@@ -20,21 +23,21 @@ public class CharacterWithItems  implements Serializable {
     public String getActualStorageToString(){
         int size = 0;
         for (Item item: items) {
-            size += item.size;
+            size += item.getSize();
         }
-        return size + "/" + character.storage;
+        return size + "/" + character.getStorage();
     }
 
     public int getActualStorage(){
         int size = 0;
         for (Item item: items) {
-            size += item.size;
+            size += item.getSize();
         }
         return size;
     }
 
     public boolean canHaveThisItem(int size){
-        return this.character.storage - (this.getActualStorage() + size) >= 0;
+        return this.character.getStorage() - (this.getActualStorage() + size) >= 0;
     }
 
 

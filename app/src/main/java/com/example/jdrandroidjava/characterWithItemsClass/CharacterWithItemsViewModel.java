@@ -1,10 +1,13 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.characterWithItemsClass;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.jdrandroidjava.characterWithItemsClass.CharacterWithItems;
+import com.example.jdrandroidjava.characterWithItemsClass.CharacterWithItemsRepository;
 
 import java.util.List;
 
@@ -21,11 +24,11 @@ public class CharacterWithItemsViewModel extends AndroidViewModel {
         mAllCharactersWithItems = mRepository.getAllCharactersWithItems();
     }
 
-    LiveData<List<CharacterWithItems>> getmAllCharactersWithItems() {
+    public LiveData<List<CharacterWithItems>> getmAllCharactersWithItems() {
         return mAllCharactersWithItems;
     }
 
-    LiveData<CharacterWithItems> getCharacterWithItems(int id){
+    public LiveData<CharacterWithItems> getCharacterWithItems(int id){
         return mRepository.getCharacterWithItems(id);
     }
 

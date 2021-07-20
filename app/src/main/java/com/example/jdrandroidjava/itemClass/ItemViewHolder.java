@@ -1,4 +1,4 @@
-package com.example.jdrandroidjava;
+package com.example.jdrandroidjava.itemClass;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.jdrandroidjava.R;
+import com.example.jdrandroidjava.activity.ItemActivity;
+import com.example.jdrandroidjava.bottomSheetFragment.BottomSheetCharacterFragment;
+import com.example.jdrandroidjava.bottomSheetFragment.BottomSheetItemFragment;
 
 class ItemViewHolder extends RecyclerView.ViewHolder{
 
