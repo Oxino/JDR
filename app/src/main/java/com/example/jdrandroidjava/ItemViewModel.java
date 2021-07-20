@@ -19,5 +19,9 @@ public class ItemViewModel extends AndroidViewModel {
         mRepository.insert(item);
     }
 
+    public void update(Item item){
+        mRepository.update(item);
+    }
+
 }
 

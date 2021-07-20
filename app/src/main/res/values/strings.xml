@@ -21,5 +21,14 @@
     <string name="item_nodata">Ce personnage n\'a aucun objet</string>
     <string name="item_too_big">L\'objet prend trop de place</string>
     <string name="item_add">L\'objet est ajouté !</string>
+    <string name="item_name">Nom requis, sans caractères speciaux!</string>
+    <string name="item_size">Encombrement requis!</string>
+    <string name="item_add_button">Ajouter</string>
+    <string name="item_nom">Nom</string>
+    <string name="item_description">Description</string>
+    <string name="item_encombrement">Encombrement</string>
+    <string name="update_item">Modifier</string>
+    <string name="item_updated">L\'objet à été mis à jour!</string>
+    <string name="item_button_update">Sauvegarder</string>
 
 </resources>

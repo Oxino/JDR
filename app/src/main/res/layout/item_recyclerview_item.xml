@@ -57,25 +57,37 @@
             </LinearLayout>
 
         </RelativeLayout>
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/expanded_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        android:visibility="gone"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/expanded_view"
+        <TextView
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name"
-            android:visibility="gone">
+            android:layout_margin="10dp"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/update_item"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textSize="18sp" />
+                android:backgroundTint="@color/interaction"
+                android:text="@string/update_item"
+                android:layout_alignParentRight="true"/>
         </RelativeLayout>
-
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
