@@ -8,15 +8,30 @@ import java.util.List;
 
 class ItemRepository {
 
-    private ItemDao mItemDao;
+    public ItemDao mItemDao;
 
     ItemRepository(Application application) {
         JdrRoomDatabase db = JdrRoomDatabase.getDatabase(application);
         mItemDao = db.itemDao();
     }
 
-    LiveData<List<Item>> getAllItems(int characterId) {
-        return mItemDao.getItems(characterId);
+    void insert(Item item) {
+        JdrRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mItemDao.insert(item);
+        });
+    }
+
+    void update(Item item){
+        JdrRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mItemDao.updateItem(item.getName(), item.getSize(), item.getDescription(), item.getId());
+        });
+    }
+
+    void delete(int id) {
+        JdrRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mItemDao.delete(id);
+        });
     }
 
 }
+

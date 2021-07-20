@@ -10,15 +10,23 @@ public class ItemViewModel extends AndroidViewModel {
 
     private ItemRepository mRepository;
 
-
     public ItemViewModel(Application application) {
         super(application);
         mRepository = new ItemRepository(application);
     }
 
-    LiveData<List<Item>> getmAllItems() {
-        return getmAllItems();
+    public void insert(Item item){
+        mRepository.insert(item);
     }
+
+    public void update(Item item){
+        mRepository.update(item);
+    }
+
+    public void delete(int id){
+        mRepository.delete(id);
+    }
+
 
 }
 

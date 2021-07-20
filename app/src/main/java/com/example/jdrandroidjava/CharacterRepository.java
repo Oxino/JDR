@@ -23,6 +23,7 @@ class CharacterRepository {
         return mAllCharacters;
     }
 
+
     void insert(Character character) {
         JdrRoomDatabase.databaseWriteExecutor.execute(() -> {
             mCharacterDao.insert(character);

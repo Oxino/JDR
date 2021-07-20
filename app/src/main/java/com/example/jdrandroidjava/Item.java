@@ -7,11 +7,13 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName="item_table",
         foreignKeys = @ForeignKey(entity = Character.class, parentColumns = "id", childColumns = "fk_character_id", onDelete = CASCADE), indices = @Index("fk_character_id"))
-public class Item {
+public class Item implements Serializable {
 
     @NonNull
     @ColumnInfo(name = "id")
@@ -50,5 +52,17 @@ public class Item {
 
     public String getDescription(){
         return this.description;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getCharacterId(){
+        return this.characterId;
     }
 }

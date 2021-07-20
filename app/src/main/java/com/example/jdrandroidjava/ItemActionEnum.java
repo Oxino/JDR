@@ -1,6 +1,6 @@
 package com.example.jdrandroidjava;
 
-public enum CharacterAction {
+public enum ItemActionEnum {
     DELETE,
     UPDATE,
     ADD

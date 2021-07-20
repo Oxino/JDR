@@ -14,11 +14,8 @@ public interface ItemDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Item item);
 
-    @Query("DELETE FROM item_table")
-    void deleteAll();
-
     @Query("DELETE FROM item_table WHERE id = :id")
-    void deleteItem(int id);
+    void delete(int id);
 
     @Query("SELECT * FROM item_table WHERE fk_character_id = :characterId ORDER BY id ASC")
     LiveData<List<Item>> getItems(int characterId);

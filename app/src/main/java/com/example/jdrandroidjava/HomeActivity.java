@@ -83,10 +83,4 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
-
-
-    public void goToPage2(View view) {
-        Intent k = new Intent(HomeActivity.this, InventoryActivity.class);
-        startActivity(k);
-    }
 }

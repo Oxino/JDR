@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Character.class, Item.class}, version = 2, exportSchema = false)
+@Database(entities = {Character.class, Item.class}, version = 1, exportSchema = false)
 public abstract class JdrRoomDatabase extends RoomDatabase {
 
     // --- SINGLETON ---
@@ -32,6 +32,7 @@ public abstract class JdrRoomDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             JdrRoomDatabase.class, "MyDatabase.db")
+                            .fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -64,7 +65,7 @@ public abstract class JdrRoomDatabase extends RoomDatabase {
                 character = new Character("Lucas5", 100);
                 characterDao.insert(character);
 
-               /* ItemDao itemDao = INSTANCE.itemDao();
+                ItemDao itemDao = INSTANCE.itemDao();
 
                 Item item = new Item("obefeft", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 10, 1);
                 itemDao.insert(item);
@@ -74,7 +75,20 @@ public abstract class JdrRoomDatabase extends RoomDatabase {
                 itemDao.insert(item);
                 item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
                 itemDao.insert(item);
-                */
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+                item = new Item("ss", "1fezfzeffez fzefzef fzefzefe fzefzefez fzefzef fezfezf fzfzefefzef efzfzf0", 22, 1);
+                itemDao.insert(item);
+
             });
         }
     };

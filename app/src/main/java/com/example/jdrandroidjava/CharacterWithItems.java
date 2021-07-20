@@ -3,9 +3,10 @@ package com.example.jdrandroidjava;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CharacterWithItems {
+public class CharacterWithItems  implements Serializable {
 
     @Embedded
     public Character character;
@@ -24,5 +25,18 @@ public class CharacterWithItems {
         return size + "/" + character.storage;
     }
 
+    public int getActualStorage(){
+        int size = 0;
+        for (Item item: items) {
+            size += item.size;
+        }
+        return size;
+    }
+
+    public boolean canHaveThisItem(int size){
+        return this.character.storage - (this.getActualStorage() + size) >= 0;
+    }
+
 
 }
+
